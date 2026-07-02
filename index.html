@@ -1,0 +1,1665 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="סדנאות ותהליכים חווייתיים שמחזקים עבודת צוות, תקשורת ותחושת שייכות לבתי ספר, מחלקות נוער, ארגונים, קהילות ומועצות.">
+    <title>יקי בוזגלו | סדנאות ותהליכים חווייתיים</title>
+    <style>
+      :root {
+        --forest: #263f31;
+        --green: #3e5c4a;
+        --olive: #76805a;
+        --cream: #f8f6f1;
+        --sand: #eee7d8;
+        --white: #ffffff;
+        --ink: #2b2b2b;
+        --muted: #66645d;
+        --gold: #b8954b;
+        --line: rgba(62, 92, 74, .15);
+        --shadow: 0 18px 50px rgba(38, 63, 49, .12);
+        --radius: 22px;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--ink);
+        font-family: Arial, "Helvetica Neue", sans-serif;
+        line-height: 1.65;
+        width: 100%;
+        overflow-x: hidden;
+      }
+      body.is-menu-open { overflow: hidden; }
+      a { color: inherit; }
+      img { display: block; max-width: 100%; }
+      h1, h2, h3, p { overflow-wrap: anywhere; }
+      h1, h2, h3 { margin: 0; letter-spacing: 0; }
+      p { margin: 0; color: var(--muted); }
+
+      .site-header {
+        position: sticky;
+        inset: 0 0 auto;
+        z-index: 40;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        padding: 10px clamp(16px, 4vw, 54px);
+        background: rgba(248, 246, 241, .88);
+        border-bottom: 1px solid rgba(255, 255, 255, .35);
+        backdrop-filter: blur(18px);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+        color: var(--forest);
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 112px;
+        height: 54px;
+        object-fit: contain;
+      }
+
+      .brand span {
+        display: none;
+        white-space: nowrap;
+      }
+
+      .primary-nav {
+        display: none;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .primary-nav a {
+        padding: 8px 11px;
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 800;
+        text-decoration: none;
+        transition: background .2s ease, color .2s ease;
+      }
+
+      .primary-nav a:hover,
+      .primary-nav a:focus-visible {
+        background: rgba(62, 92, 74, .1);
+        color: var(--forest);
+      }
+
+      .menu-toggle {
+        width: 44px;
+        height: 44px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .72);
+        color: var(--forest);
+        font-size: 24px;
+        line-height: 1;
+      }
+
+      .mobile-panel {
+        position: fixed;
+        inset: 76px 14px auto;
+        z-index: 50;
+        display: none;
+        padding: 16px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: rgba(248, 246, 241, .98);
+        box-shadow: var(--shadow);
+      }
+
+      .mobile-panel.is-open {
+        display: grid;
+        gap: 8px;
+      }
+
+      .mobile-panel a {
+        padding: 13px 14px;
+        border-radius: 14px;
+        color: var(--forest);
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      .mobile-panel a:hover {
+        background: rgba(62, 92, 74, .08);
+      }
+
+      .hero {
+        position: relative;
+        min-height: clamp(390px, 31vw, 460px);
+        display: grid;
+        align-items: center;
+        overflow: hidden;
+        color: var(--white);
+        isolation: isolate;
+      }
+
+      .hero-slide {
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        transform: scale(1.02);
+        transition: opacity 900ms ease, transform 5s ease;
+      }
+
+      .hero-slide.is-active {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background:
+          linear-gradient(0deg, rgba(28, 43, 34, .58), rgba(28, 43, 34, .28) 52%, rgba(28, 43, 34, .18)),
+          linear-gradient(90deg, rgba(28, 43, 34, .38), rgba(62, 92, 74, .18), rgba(28, 43, 34, .24));
+      }
+
+      .hero-content {
+        width: 100%;
+        max-width: 1080px;
+        margin-inline: auto;
+        padding: clamp(36px, 5vw, 72px) clamp(18px, 5vw, 72px);
+        text-align: center;
+      }
+
+      .hero-logo {
+        width: clamp(102px, 16vw, 150px);
+        height: auto;
+        margin: 0 auto 14px;
+        filter: drop-shadow(0 12px 32px rgba(0, 0, 0, .28));
+      }
+
+      .eyebrow {
+        margin: 0 0 12px;
+        color: var(--gold);
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      .hero .eyebrow {
+        color: #ead39b;
+      }
+
+      h1 {
+        max-width: 840px;
+        margin-inline: auto;
+        color: var(--white);
+        font-size: clamp(31px, 4.4vw, 50px);
+        line-height: 1.1;
+        text-shadow: 0 14px 36px rgba(0, 0, 0, .38);
+      }
+
+      .hero-lead {
+        max-width: 780px;
+        margin: 16px auto 0;
+        color: rgba(255, 255, 255, .92);
+        font-size: clamp(17px, 2vw, 22px);
+        font-weight: 800;
+      }
+
+      .actions {
+        display: grid;
+        gap: 12px;
+        width: min(430px, 100%);
+        margin: 24px auto 0;
+      }
+
+      .hero .actions {
+        grid-template-columns: 1fr;
+        width: min(230px, 100%);
+        margin-top: 22px;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 54px;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 26px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        font-weight: 900;
+        text-decoration: none;
+        transition: transform .22s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease;
+      }
+
+      .button:hover,
+      .button:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow);
+      }
+
+      .button-primary {
+        background: var(--gold);
+        color: var(--forest);
+      }
+
+      .button-secondary {
+        background: rgba(255, 255, 255, .94);
+        color: var(--forest);
+      }
+
+      .section {
+        padding: clamp(36px, 5vw, 60px) clamp(18px, 5vw, 72px);
+      }
+
+      #about {
+        padding-top: clamp(24px, 3vw, 36px);
+      }
+
+      #doing,
+      #workshops,
+      #gallery,
+      #testimonials,
+      #contact {
+        padding-block: clamp(36px, 4.5vw, 56px);
+      }
+
+      #workshops .section-heading {
+        margin-bottom: 18px;
+      }
+
+      .section-inner {
+        width: 100%;
+        max-width: 1160px;
+        margin-inline: auto;
+      }
+
+      .section-heading {
+        max-width: 790px;
+        margin-bottom: 18px;
+      }
+
+      h2 {
+        color: var(--forest);
+        font-size: clamp(32px, 5vw, 58px);
+        line-height: 1.1;
+      }
+
+      h3 {
+        color: var(--forest);
+        font-size: 22px;
+        line-height: 1.25;
+      }
+
+      .section-heading p {
+        margin-top: 10px;
+        font-size: clamp(17px, 2vw, 20px);
+      }
+
+      .soft-band {
+        background: var(--white);
+      }
+
+      .about-grid,
+      .doing-grid,
+      .workshop-grid,
+      .benefits-grid,
+      .process-grid,
+      .testimonial-grid,
+      .contact-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .about-grid {
+        align-items: start;
+      }
+
+      .about-copy {
+        display: grid;
+        gap: 14px;
+      }
+
+      .about-story {
+        display: grid;
+        gap: 14px;
+        max-width: 720px;
+      }
+
+      .about-story p {
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.85;
+      }
+
+      .about-story strong,
+      .team-panel strong {
+        color: var(--forest);
+        font-weight: 900;
+      }
+
+      .about-visual {
+        display: grid;
+        gap: 16px;
+      }
+
+      .personal-photo {
+        min-height: 320px;
+        display: grid;
+        place-items: center;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background:
+          linear-gradient(135deg, rgba(62, 92, 74, .14), rgba(184, 149, 75, .12)),
+          var(--sand);
+        color: var(--forest);
+        box-shadow: 0 12px 36px rgba(38, 63, 49, .08);
+        text-align: center;
+      }
+
+      .personal-photo span {
+        max-width: 230px;
+        font-weight: 900;
+      }
+
+      .team-panel {
+        padding: clamp(20px, 3vw, 28px);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, .88);
+        box-shadow: 0 12px 36px rgba(38, 63, 49, .08);
+      }
+
+      .team-panel h3 {
+        margin-bottom: 10px;
+      }
+
+      .team-panel p {
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.8;
+      }
+
+      .team-panel p + p {
+        margin-top: 12px;
+      }
+
+      .quote-panel,
+      .card,
+      .contact-panel {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, .82);
+        box-shadow: 0 12px 36px rgba(38, 63, 49, .08);
+      }
+
+      .quote-panel {
+        padding: clamp(24px, 3vw, 32px);
+        background:
+          linear-gradient(135deg, rgba(62, 92, 74, .96), rgba(118, 128, 90, .92));
+        color: var(--white);
+      }
+
+      .quote-panel p {
+        color: rgba(255, 255, 255, .88);
+        font-size: 18px;
+        line-height: 1.75;
+      }
+
+      .quote-panel strong {
+        display: block;
+        margin-bottom: 14px;
+        color: #f1dca6;
+        font-size: clamp(25px, 3.4vw, 38px);
+        line-height: 1.2;
+      }
+
+      .doing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        overflow: hidden;
+        transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(184, 149, 75, .38);
+        box-shadow: var(--shadow);
+      }
+
+      .value-card {
+        padding: 22px;
+      }
+
+      .icon {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 14px;
+        border-radius: 50%;
+        background: rgba(184, 149, 75, .15);
+        color: var(--forest);
+      }
+
+      .icon svg {
+        width: 22px;
+        height: 22px;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .workshop-grid {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+      }
+
+      .workshop-card {
+        display: flex;
+      }
+
+      .workshop-body {
+        width: 100%;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+      }
+
+      .workshop-body .text-link {
+        margin-top: auto;
+        padding-top: 18px;
+      }
+
+      .workshop-detail-panel {
+        margin-top: 14px;
+        padding: clamp(20px, 3vw, 30px);
+        border: 1px solid rgba(184, 149, 75, .28);
+        border-radius: var(--radius);
+        background: rgba(248, 246, 241, .86);
+        box-shadow: 0 12px 36px rgba(38, 63, 49, .08);
+      }
+
+      .workshop-detail-panel.is-collapsed:not(:target) {
+        display: none;
+      }
+
+      .workshop-detail-panel .section-heading {
+        margin-bottom: 16px;
+      }
+
+      .workshop-option-grid {
+        display: grid;
+        gap: 14px;
+      }
+
+      .workshop-option-card {
+        display: grid;
+        gap: 12px;
+        padding: 20px;
+      }
+
+      .workshop-option-card .button {
+        margin-top: 6px;
+        justify-self: start;
+      }
+
+      .workshop-note {
+        margin-top: 14px;
+        padding: 16px 18px;
+        border-right: 4px solid var(--gold);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, .72);
+        color: var(--forest);
+        font-weight: 800;
+      }
+
+      .tag {
+        display: inline-flex;
+        margin-bottom: 12px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(62, 92, 74, .09);
+        color: var(--forest);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .text-link {
+        display: inline-flex;
+        margin-top: 18px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--forest);
+        font: inherit;
+        font-weight: 900;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .process-grid {
+        counter-reset: process;
+        gap: 12px;
+      }
+
+      #process {
+        padding-top: clamp(30px, 3.5vw, 44px);
+        padding-bottom: clamp(32px, 3.5vw, 46px);
+      }
+
+      #process .section-heading {
+        margin-bottom: 16px;
+      }
+
+      .process-card {
+        position: relative;
+        min-height: 0;
+        padding: 18px 20px;
+      }
+
+      .process-card::before {
+        counter-increment: process;
+        content: "0" counter(process);
+        display: block;
+        margin-bottom: 12px;
+        color: var(--gold);
+        font-size: 18px;
+        font-weight: 900;
+        line-height: 1;
+      }
+
+      .process-card h3 {
+        margin-bottom: 8px;
+        font-size: 20px;
+      }
+
+      .process-card p {
+        line-height: 1.55;
+      }
+
+      .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .benefit-card {
+        padding: 20px;
+      }
+
+      .benefit-card h3 {
+        margin-bottom: 8px;
+        font-size: 20px;
+      }
+
+      .benefit-card p {
+        line-height: 1.6;
+      }
+
+      .gallery-note {
+        display: grid;
+        gap: 14px;
+        padding: clamp(24px, 5vw, 44px);
+        border-radius: var(--radius);
+        background: linear-gradient(135deg, rgba(38, 63, 49, .96), rgba(118, 128, 90, .9));
+        box-shadow: var(--shadow);
+        color: var(--white);
+      }
+
+      .gallery-note p { color: rgba(255, 255, 255, .86); }
+      .gallery-note strong {
+        color: #f1dca6;
+        font-size: clamp(26px, 4vw, 42px);
+        line-height: 1.15;
+      }
+
+      .gallery-shell {
+        display: grid;
+        gap: 14px;
+      }
+
+      .gallery-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .gallery-filter {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .78);
+        color: var(--forest);
+        font: inherit;
+        font-weight: 900;
+        cursor: pointer;
+        transition: background .2s ease, border-color .2s ease, transform .2s ease;
+      }
+
+      .gallery-filter {
+        padding: 9px 15px;
+        font-size: 14px;
+      }
+
+      .gallery-filter:hover,
+      .gallery-filter:focus-visible {
+        transform: translateY(-1px);
+        border-color: rgba(184, 149, 75, .42);
+      }
+
+      .gallery-filter.is-active {
+        background: var(--forest);
+        border-color: var(--forest);
+        color: var(--white);
+      }
+
+      .gallery-grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item {
+        position: relative;
+        min-height: 190px;
+        overflow: hidden;
+        border: 0;
+        border-radius: var(--radius);
+        background: var(--sand);
+        box-shadow: 0 12px 36px rgba(38, 63, 49, .08);
+        color: var(--white);
+        cursor: pointer;
+        text-align: right;
+      }
+
+      .gallery-item-media {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(135deg, rgba(62, 92, 74, .28), rgba(184, 149, 75, .18)),
+          var(--sand);
+      }
+
+      .gallery-item-media img,
+      .gallery-item-media video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .gallery-item-media.is-empty {
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        color: var(--forest);
+        font-weight: 900;
+      }
+
+      .gallery-item::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(28, 43, 34, .72), rgba(28, 43, 34, .12) 60%);
+      }
+
+      .gallery-item-content {
+        position: absolute;
+        inset: auto 0 0;
+        z-index: 1;
+        padding: 20px;
+      }
+
+      .gallery-item-content span {
+        display: inline-flex;
+        margin-bottom: 8px;
+        color: #f1dca6;
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .gallery-item-content strong {
+        display: block;
+        color: var(--white);
+        font-size: 22px;
+        line-height: 1.2;
+      }
+
+      .gallery-empty {
+        display: none;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, .82);
+        color: var(--forest);
+        font-weight: 900;
+        text-align: center;
+      }
+
+      .gallery-empty.is-visible {
+        display: block;
+      }
+
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        display: none;
+        place-items: center;
+        padding: clamp(18px, 4vw, 48px);
+        background: rgba(28, 43, 34, .82);
+      }
+
+      .lightbox.is-open {
+        display: grid;
+      }
+
+      .lightbox-panel {
+        width: min(980px, 100%);
+        overflow: hidden;
+        border-radius: var(--radius);
+        background: var(--cream);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, .32);
+      }
+
+      .lightbox-media {
+        background: var(--forest);
+      }
+
+      .lightbox-media img,
+      .lightbox-media video {
+        width: 100%;
+        max-height: min(70vh, 720px);
+        object-fit: contain;
+        background: var(--forest);
+      }
+
+      .lightbox-media .gallery-item-media.is-empty {
+        position: static;
+        min-height: 360px;
+        background:
+          linear-gradient(135deg, rgba(62, 92, 74, .18), rgba(184, 149, 75, .12)),
+          var(--sand);
+      }
+
+      .lightbox-body {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 18px;
+      }
+
+      .lightbox-body strong {
+        display: block;
+        color: var(--forest);
+        font-size: 20px;
+      }
+
+      .lightbox-body span {
+        color: var(--muted);
+        font-weight: 800;
+      }
+
+      .lightbox-close {
+        width: 42px;
+        height: 42px;
+        flex: 0 0 auto;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: var(--white);
+        color: var(--forest);
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial {
+        padding: 26px;
+      }
+
+      .testimonial p {
+        color: var(--ink);
+        font-size: 18px;
+        font-weight: 800;
+      }
+
+      .testimonial span {
+        display: block;
+        margin-top: 16px;
+        color: var(--muted);
+      }
+
+      .contact-grid {
+        align-items: start;
+      }
+
+      .contact-panel {
+        padding: clamp(22px, 3vw, 32px);
+      }
+
+      .contact-list {
+        display: grid;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .contact-list a {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 15px 0;
+        border-bottom: 1px solid var(--line);
+        color: var(--forest);
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      form {
+        display: grid;
+        gap: 12px;
+      }
+
+      label {
+        display: grid;
+        gap: 6px;
+        color: var(--forest);
+        font-weight: 900;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        min-height: 50px;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--white);
+        color: var(--ink);
+        font: inherit;
+      }
+
+      textarea {
+        min-height: 118px;
+        resize: vertical;
+      }
+
+      .form-note {
+        display: none;
+        margin-top: 12px;
+        padding: 14px;
+        border-radius: 14px;
+        background: rgba(62, 92, 74, .1);
+        color: var(--forest);
+        font-weight: 900;
+      }
+
+      .form-note.is-visible {
+        display: block;
+      }
+
+      .form-selection {
+        padding: 14px;
+        border: 1px solid rgba(184, 149, 75, .32);
+        border-radius: 14px;
+        background: rgba(248, 246, 241, .82);
+        color: var(--forest);
+        font-weight: 900;
+        line-height: 1.7;
+      }
+
+      .site-footer {
+        padding: 34px clamp(18px, 5vw, 72px);
+        background: var(--forest);
+        color: var(--white);
+      }
+
+      .footer-inner {
+        width: min(1160px, 100%);
+        margin-inline: auto;
+        display: grid;
+        gap: 18px;
+      }
+
+      .site-footer p,
+      .site-footer a {
+        color: rgba(255, 255, 255, .78);
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+      }
+
+      .footer-links a {
+        text-decoration: none;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity .65s ease, transform .65s ease;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (min-width: 640px) {
+        .actions {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .doing-grid,
+        .process-grid,
+        .benefits-grid,
+        .testimonial-grid,
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 900px) {
+        .menu-toggle { display: none; }
+        .primary-nav { display: flex; }
+        .brand span { display: inline; }
+        .hero { min-height: clamp(390px, 31vw, 460px); }
+        .about-grid,
+        .contact-grid {
+          grid-template-columns: minmax(0, 1.18fr) minmax(280px, .82fr);
+        }
+        .workshop-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .workshop-option-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .workshop-card.featured {
+          grid-column: span 2;
+        }
+        .doing-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .process-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .benefits-grid {
+          grid-template-columns: repeat(5, 1fr);
+        }
+        .gallery-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .gallery-item:nth-child(1) {
+          grid-column: span 2;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .site-header {
+          justify-content: center;
+          padding-block: 8px;
+        }
+        .menu-toggle {
+          position: absolute;
+          left: 18px;
+        }
+        .brand img {
+          width: 86px;
+          height: 44px;
+        }
+        .brand span {
+          display: none;
+        }
+        .hero {
+          min-height: 310px;
+        }
+        .personal-photo {
+          min-height: 220px;
+        }
+        .hero-content {
+          padding-top: 24px;
+          padding-inline: 22px;
+          padding-bottom: 24px;
+        }
+        .hero-logo {
+          display: none;
+        }
+        .hero .eyebrow {
+          margin-bottom: 6px;
+          font-size: 12px;
+        }
+        h1 {
+          max-width: 286px;
+          font-size: 21px;
+          line-height: 1.18;
+        }
+        .hero-lead {
+          max-width: 286px;
+          margin-top: 10px;
+          font-size: 14px;
+          line-height: 1.55;
+        }
+        .actions {
+          max-width: 220px;
+          margin-top: 18px;
+          gap: 10px;
+        }
+        .button {
+          min-height: 44px;
+          padding-block: 9px;
+        }
+        .section-heading {
+          max-width: 286px;
+          margin-inline: auto;
+          text-align: center;
+        }
+        h2 {
+          font-size: 27px;
+          line-height: 1.18;
+        }
+        .section {
+          padding-block: 32px;
+        }
+        #about {
+          padding-top: 24px;
+          padding-bottom: 32px;
+        }
+        #doing,
+        #workshops,
+        #gallery,
+        #testimonials,
+        #contact {
+          padding-block: 32px;
+        }
+        #workshops {
+          padding-top: 30px;
+        }
+        #workshops .section-heading {
+          margin-bottom: 14px;
+        }
+        #process {
+          padding-top: 28px;
+          padding-bottom: 32px;
+        }
+        #process .section-heading {
+          margin-bottom: 14px;
+        }
+        .gallery-filters {
+          justify-content: center;
+        }
+        .gallery-item {
+          min-height: 178px;
+        }
+        .lightbox-body {
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="יקי בוזגלו - דף הבית">
+        <img src="assets/images/logo.png" alt="לוגו יקי בוזגלו">
+        <span>יקי בוזגלו</span>
+      </a>
+      <nav class="primary-nav" aria-label="ניווט ראשי">
+        <a href="#about">מי אני</a>
+        <a href="#doing">מה עושים</a>
+        <a href="#workshops">סדנאות</a>
+        <a href="#process">תהליך</a>
+        <a href="#gallery">גלריה</a>
+        <a href="#contact">יצירת קשר</a>
+      </nav>
+      <button class="menu-toggle" type="button" aria-label="פתיחת תפריט" aria-expanded="false">☰</button>
+    </header>
+
+    <nav class="mobile-panel" aria-label="ניווט מובייל">
+      <a href="#about">מי אני</a>
+      <a href="#doing">מה אנחנו עושים</a>
+      <a href="#workshops">הסדנאות שלנו</a>
+      <a href="#process">תהליך העבודה</a>
+      <a href="#gallery">גלריה</a>
+      <a href="#testimonials">המלצות</a>
+      <a href="#contact">יצירת קשר</a>
+    </nav>
+
+    <main id="home">
+      <section class="hero" aria-label="פתיח האתר">
+        <div class="hero-slide is-active" style="background-image: url('assets/images/hero-01.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('assets/images/hero-02.jpg');"></div>
+        <div class="hero-slide" style="background-image: url('assets/images/hero-03.jpg');"></div>
+        <div class="hero-content">
+          <h1>סדנאות חווייתיות שמחברות אנשים דרך עשייה, תקשורת ותהליך.</h1>
+          <div class="actions">
+            <a class="button button-secondary" href="#contact">השאירו פרטים</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section soft-band" id="about">
+        <div class="section-inner about-grid">
+          <div class="about-copy reveal">
+            <div class="section-heading">
+              <p class="eyebrow">אודות</p>
+              <h2>נעים להכיר</h2>
+            </div>
+            <div class="about-story">
+              <p>מאחורי הסדנאות עומד צוות מנחים המורכב מאנשי חינוך פורמלי ובלתי פורמלי, בעלי ניסיון רב בהובלת קבוצות, תהליכים חינוכיים ועבודה עם בני נוער, צוותים וקהילות.</p>
+              <p>כל סדנה נבנית מתוך שילוב בין ניסיון מקצועי, למידה מהשטח והתאמה מדויקת לצרכים של כל קבוצה. אנחנו מאמינים שחוויה משמעותית נוצרת כאשר משלבים עשייה, שיח, אתגר ועיבוד, באופן שמאפשר לכל משתתף לצאת עם כלים אמיתיים להמשך הדרך.</p>
+              <p>את הצוות מוביל יקי בוזגלו, בעל תואר שני במנהל מערכות חינוך, איש חינוך ומנחה קבוצות עם למעלה מ־30 שנות ניסיון בחינוך הפורמלי והבלתי פורמלי. לאורך השנים פיתח גישה המשלבת מקצועיות, הקשבה ועבודה תהליכית, המהווה את הבסיס לכל פעילות של הצוות.</p>
+            </div>
+          </div>
+          <aside class="about-visual reveal" aria-label="תמונה אישית וצוות המנחים">
+            <div class="personal-photo">
+              <span>כאן תשתלב תמונה אישית של יקי בהמשך</span>
+            </div>
+            <div class="team-panel">
+              <h3>צוות המנחים</h3>
+              <p>לצד העשייה שלי פועל צוות מנחים מנוסה, המורכב מאנשי חינוך, מדריכים ומנחי קבוצות בעלי ניסיון משמעותי בעבודה עם בני נוער.</p>
+              <p>אלו אנשים שאני מכיר מקרוב, עובד איתם לאורך השנים ומאמין ביכולות המקצועיות והאנושיות שלהם. בהתאם לאופי הקבוצה ולמטרות התהליך, נבחר צוות ההנחיה המתאים ביותר, מתוך מחויבות להעניק לכל משתתף חוויה משמעותית, מדויקת ומותאמת לצרכיו.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="doing">
+        <div class="section-inner">
+          <div class="section-heading reveal">
+            <p class="eyebrow">למי זה מתאים</p>
+            <h2>תהליכים חווייתיים שמחברים אנשים</h2>
+            <p>סדנאות ותהליכים לבתי ספר, מחלקות נוער, צוותים וקהילות — עם דגש על חיבור, תקשורת, אחריות ועבודת צוות.</p>
+          </div>
+          <div class="doing-grid">
+            <article class="card value-card reveal">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M6 20V8l6-4 6 4v12"/><path d="M10 20v-6h4v6"/><path d="M9 10h.01"/><path d="M15 10h.01"/></svg>
+              </div>
+              <h3>בתי ספר</h3>
+              <p>סדנאות ותהליכים חווייתיים המותאמים לשכבות, כיתות וצוותי חינוך, במטרה לחזק חיבור, תקשורת ואחריות.</p>
+            </article>
+            <article class="card value-card reveal">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M7 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M17 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M2 21a5 5 0 0 1 10 0"/><path d="M14 21a4 4 0 0 1 8 0"/></svg>
+              </div>
+              <h3>סדנאות לקבוצות</h3>
+              <p>פעילויות חווייתיות לקבוצות נוער ובוגרים, המחזקות שיתוף פעולה, היכרות, עבודת צוות ותחושת שייכות.</p>
+            </article>
+            <article class="card value-card reveal">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M9 6V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1"/><path d="M4 8h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M4 13h16"/><path d="M10 13v2h4v-2"/></svg>
+              </div>
+              <h3>ארגונים וצוותים</h3>
+              <p>סדנאות המפתחות תקשורת, שיתוף פעולה, מנהיגות וחשיבה משותפת באמצעות עשייה והתנסות.</p>
+            </article>
+            <article class="card value-card reveal">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 19V9l8-5 8 5v10"/><path d="M4 19h16"/><path d="M8 19v-5h8v5"/><path d="M9 10h6"/></svg>
+              </div>
+              <h3>קהילות ומועצות</h3>
+              <p>תהליכים וסדנאות המותאמים למחלקות נוער, מושבים, קהילות ומועצות, במטרה לחזק את הקהילה וליצור חיבור משמעותי בין המשתתפים.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section soft-band" id="workshops">
+        <div class="section-inner">
+          <div class="section-heading reveal">
+            <p class="eyebrow">הסדנאות שלנו</p>
+            <h2>חמש מסגרות עבודה שאפשר להתאים לקבוצה, למטרה ולשטח.</h2>
+            <p>כל סדנה בנויה כחוויה עם רציונל ברור: חיבור אנושי, אחריות משותפת, תקשורת וכלים להמשך.</p>
+          </div>
+          <div class="workshop-grid">
+            <article class="card workshop-card featured reveal">
+              <div class="workshop-body">
+                <h3>מבשלים חיבור</h3>
+                <p>סדנת בישול שטח שמתרגמת עבודת צוות, תקשורת וחלוקת אחריות לחוויה מוחשית ומגבשת.</p>
+                <a class="text-link" href="workshops/mevashlim-hibur.html">לפרטים נוספים</a>
+              </div>
+            </article>
+            <article class="card workshop-card reveal">
+              <div class="workshop-body">
+                <span class="tag">מבנה או שטח</span>
+                <h3>אתגר מחבר</h3>
+                <p>פעילות משימתית שמחזקת אמון, הקשבה, מנהיגות ויכולת לעבוד יחד גם כשיש אתגר.</p>
+                <a class="text-link" href="workshops/etgar-mehaber.html">לפרטים נוספים</a>
+              </div>
+            </article>
+            <article class="card workshop-card reveal">
+              <div class="workshop-body">
+                <h3>סדנה תהליכית מותאמת לקבוצה</h3>
+                <p>תהליך קבוצתי המותאם לצורכי הקבוצה ומשלב חוויה, שיח, משימות, עיבוד והצבת מטרות להמשך הדרך.</p>
+                <a class="text-link" href="workshops/sadna-tahalichit.html">לפרטים נוספים</a>
+              </div>
+            </article>
+            <article class="card workshop-card reveal">
+              <div class="workshop-body">
+                <span class="tag">חד יומי או הטמעה</span>
+                <h3>הכשרת AI לחינוך</h3>
+                <p>הכשרה מעשית לצוותים חינוכיים לשימוש אחראי, יצירתי ומועיל בכלי AI בעבודה יומיומית.</p>
+                <a class="text-link" href="workshops/ai-education.html">לפרטים נוספים</a>
+              </div>
+            </article>
+            <article class="card workshop-card reveal">
+              <div class="workshop-body">
+                <h3>מפגשים אישיים בקבוצה קטנה</h3>
+                <p>תהליך בקבוצה אינטימית של 3–5 משתתפים, המשלב ליווי אישי, הצבת מטרות, חיזוק ביטחון עצמי ופיתוח מיומנויות אישיות בתוך מרחב קבוצתי תומך.</p>
+                <a class="text-link" href="workshops/small-group.html">לפרטים נוספים</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="process">
+        <div class="section-inner">
+          <div class="section-heading reveal">
+            <p class="eyebrow">מה המשתתפים מקבלים</p>
+            <h2>חוויה שמחברת אנשים ומצמיחה קבוצות</h2>
+            <p>כל פעילות משלבת עשייה, שיח והתנסות, במטרה להעניק למשתתפים כלים, חוויות ותחושת מסוגלות שממשיכים ללוות אותם גם לאחר סיום הסדנה.</p>
+          </div>
+          <div class="benefits-grid">
+            <article class="card benefit-card reveal"><h3>חוויה מותאמת לכל קבוצה</h3><p>כל פעילות נבנית בהתאם לגיל המשתתפים, למטרות הקבוצה ולאופי הייחודי שלה.</p></article>
+            <article class="card benefit-card reveal"><h3>למידה דרך התנסות</h3><p>המשתתפים לומדים מתוך עשייה, אתגר ושיתוף פעולה – ולא רק באמצעות הסברים.</p></article>
+            <article class="card benefit-card reveal"><h3>תקשורת ושיתוף פעולה</h3><p>חיזוק ההקשבה, עבודת הצוות והיכולת להתמודד יחד עם אתגרים ומשימות.</p></article>
+            <article class="card benefit-card reveal"><h3>ביטחון עצמי ומסוגלות</h3><p>כל משתתף מקבל הזדמנות להוביל, להצליח ולגלות את החוזקות האישיות שלו.</p></article>
+            <article class="card benefit-card reveal"><h3>כלים שממשיכים הלאה</h3><p>המשתתפים יוצאים עם תובנות וכלים שניתן ליישם בבית הספר, בקבוצה ובחיי היומיום.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section soft-band" id="gallery">
+        <div class="section-inner">
+          <div class="section-heading reveal">
+            <p class="eyebrow">גלריה</p>
+            <h2>הצצה לרגעים מהשטח</h2>
+            <p>תמונות וסרטונים מהסדנאות, התהליכים והפעילויות שלנו. כל תמונה משקפת רגע אמיתי של חיבור, עשייה, למידה והתפתחות.</p>
+          </div>
+          <div class="gallery-shell reveal" data-gallery>
+            <div class="gallery-filters" aria-label="סינון לפי נושא">
+              <button class="gallery-filter is-active" type="button" data-gallery-filter="all">הכל</button>
+              <button class="gallery-filter" type="button" data-gallery-filter="mevashlim">מבשלים חיבור</button>
+              <button class="gallery-filter" type="button" data-gallery-filter="etgar">אתגר מחבר</button>
+              <button class="gallery-filter" type="button" data-gallery-filter="field">סדנאות שטח</button>
+              <button class="gallery-filter" type="button" data-gallery-filter="process">תהליכים קבוצתיים</button>
+              <button class="gallery-filter" type="button" data-gallery-filter="schools">בתי ספר וצוותי חינוך</button>
+              <button class="gallery-filter" type="button" data-gallery-filter="videos">סרטונים</button>
+            </div>
+            <div class="gallery-grid" id="gallery-grid" aria-live="polite"></div>
+            <div class="gallery-empty" id="gallery-empty">בקטגוריה הזו יתווספו פריטים בהמשך.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="testimonials">
+        <div class="section-inner">
+          <div class="section-heading reveal">
+            <p class="eyebrow">המלצות</p>
+            <h2>אמון שנבנה דרך עבודה בשטח.</h2>
+            <p>האתר ערוך להצגת המלצות מגופים, צוותים וקהילות לאחר קבלת אישור פרסום.</p>
+          </div>
+          <div class="testimonial-grid">
+            <article class="card testimonial reveal"><p>מחלקת הנוער באר טוביה</p><span>שיתופי פעולה חינוכיים וקהילתיים</span></article>
+            <article class="card testimonial reveal"><p>מועצה אזורית תמר</p><span>פעילות ותהליכים לקבוצות נוער וקהילה</span></article>
+            <article class="card testimonial reveal"><p>מועצה אזורית לכיש</p><span>סדנאות שמחברות בין עשייה, שטח ושיח</span></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section soft-band" id="contact">
+        <div class="section-inner contact-grid">
+          <div class="contact-panel reveal">
+            <p class="eyebrow">יצירת קשר</p>
+            <h2>נבנה יחד את הסדנה שמתאימה לקבוצה שלכם.</h2>
+            <p>אפשר לפנות לשיחת התאמה קצרה, לבקש הצעת מחיר או להתייעץ על תהליך מתאים.</p>
+            <div class="contact-list">
+              <a href="https://wa.me/972526022321"><span>וואטסאפ</span><span>052-602-2321</span></a>
+              <a href="mailto:yaki1872@gmail.com"><span>מייל</span><span>yaki1872@gmail.com</span></a>
+            </div>
+          </div>
+          <div class="contact-panel reveal">
+            <form id="lead-form">
+              <label>שם מלא<input name="name" autocomplete="name" required></label>
+              <label>ארגון<input name="organization" autocomplete="organization"></label>
+              <label>טלפון<input name="phone" autocomplete="tel" required></label>
+              <label>אימייל<input type="email" name="email" autocomplete="email"></label>
+              <label>סוג הסדנה המבוקשת
+                <select name="workshop">
+                  <option>מבשלים חיבור</option>
+                  <option>אתגר מחבר</option>
+                  <option>סדנה תהליכית מותאמת לקבוצה</option>
+                  <option>הכשרת AI לחינוך</option>
+                  <option>מפגשים אישיים בקבוצה קטנה</option>
+                </select>
+              </label>
+              <input type="hidden" name="workshop_version">
+              <input type="hidden" name="meeting_count">
+              <input type="hidden" name="activity_type">
+              <div class="form-selection" id="form-selection" hidden></div>
+              <label>הודעה<textarea name="message"></textarea></label>
+              <button class="button button-primary" type="submit">שליחת פרטים</button>
+              <div class="form-note" id="form-note">תודה, הפרטים נקלטו. נחזור אליכם בהקדם.</div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <strong>יקי בוזגלו | סדנאות ותהליכים חווייתיים</strong>
+        <p>סדנאות לבתי ספר, מחלקות נוער, ארגונים, קהילות ומועצות.</p>
+        <div class="footer-links">
+          <a href="#about">מי אני</a>
+          <a href="#workshops">סדנאות</a>
+          <a href="#contact">יצירת קשר</a>
+          <a href="#">מדיניות פרטיות</a>
+          <a href="#">הצהרת נגישות</a>
+          <a href="#">תנאי שימוש</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="lightbox" id="gallery-lightbox" aria-hidden="true">
+      <div class="lightbox-panel" role="dialog" aria-modal="true" aria-label="צפייה בפריט מהגלריה">
+        <div class="lightbox-media" id="lightbox-media"></div>
+        <div class="lightbox-body">
+          <div>
+            <strong id="lightbox-title"></strong>
+            <span id="lightbox-category"></span>
+          </div>
+          <button class="lightbox-close" type="button" aria-label="סגירת צפייה">×</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="galleryItems.js"></script>
+    <script>
+      const slides = document.querySelectorAll(".hero-slide");
+      let activeSlide = 0;
+      setInterval(() => {
+        slides[activeSlide].classList.remove("is-active");
+        activeSlide = (activeSlide + 1) % slides.length;
+        slides[activeSlide].classList.add("is-active");
+      }, 2000);
+
+      const toggle = document.querySelector(".menu-toggle");
+      const mobilePanel = document.querySelector(".mobile-panel");
+      toggle.addEventListener("click", () => {
+        const open = mobilePanel.classList.toggle("is-open");
+        document.body.classList.toggle("is-menu-open", open);
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+      mobilePanel.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mobilePanel.classList.remove("is-open");
+          document.body.classList.remove("is-menu-open");
+          toggle.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("is-visible");
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+      let galleryItems = window.galleryItems || [];
+      const galleryCategoryLabels = {
+        gallery: "גלריה",
+        mevashlim: "מבשלים חיבור",
+        etgar: "אתגר מחבר",
+        field: "סדנאות שטח",
+        process: "תהליכים קבוצתיים",
+        schools: "בתי ספר וצוותי חינוך"
+      };
+      const galleryGrid = document.querySelector("#gallery-grid");
+      const galleryEmpty = document.querySelector("#gallery-empty");
+      const galleryFilters = document.querySelectorAll("[data-gallery-filter]");
+      const lightbox = document.querySelector("#gallery-lightbox");
+      const lightboxMedia = document.querySelector("#lightbox-media");
+      const lightboxTitle = document.querySelector("#lightbox-title");
+      const lightboxCategory = document.querySelector("#lightbox-category");
+      let activeGalleryFilter = "all";
+
+      const getGalleryItemSrc = (item) => {
+        if (item.src) return item.src;
+        const basePath = item.type === "video" ? "assets/videos/gallery/" : "assets/images/gallery/";
+        return `${basePath}${item.fileName}`;
+      };
+
+      const getGalleryItemLabel = (item) => (
+        galleryCategoryLabels[item.category] || item.category
+      );
+
+      const createGalleryPreview = (item) => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "gallery-item-media";
+        const src = getGalleryItemSrc(item);
+
+        if (item.type === "image") {
+          const image = document.createElement("img");
+          image.src = src;
+          image.alt = item.alt || item.title;
+          image.loading = "lazy";
+          image.addEventListener("error", () => {
+            wrapper.classList.add("is-empty");
+            wrapper.replaceChildren(`כאן תופיע תמונה: ${src}`);
+          });
+          wrapper.append(image);
+          return wrapper;
+        }
+
+        wrapper.classList.add("is-empty");
+        wrapper.textContent = `כאן יופיע סרטון: ${src}`;
+        return wrapper;
+      };
+
+      const openGalleryItem = (item) => {
+        lightboxMedia.replaceChildren();
+        const src = getGalleryItemSrc(item);
+
+        if (item.type === "image") {
+          const image = document.createElement("img");
+          image.src = src;
+          image.alt = item.alt || item.title;
+          image.addEventListener("error", () => {
+            const fallback = document.createElement("div");
+            fallback.className = "gallery-item-media is-empty";
+            fallback.textContent = `כאן תופיע תמונה: ${src}`;
+            lightboxMedia.replaceChildren(fallback);
+          });
+          lightboxMedia.append(image);
+        } else {
+          const video = document.createElement("video");
+          video.src = src;
+          video.controls = true;
+          video.playsInline = true;
+          video.addEventListener("error", () => {
+            const fallback = document.createElement("div");
+            fallback.className = "gallery-item-media is-empty";
+            fallback.textContent = `כאן יופיע סרטון: ${src}`;
+            lightboxMedia.replaceChildren(fallback);
+          });
+          lightboxMedia.append(video);
+        }
+
+        lightboxTitle.textContent = item.title;
+        lightboxCategory.textContent = getGalleryItemLabel(item);
+        lightbox.classList.add("is-open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.classList.add("is-menu-open");
+      };
+
+      const closeGalleryItem = () => {
+        lightbox.classList.remove("is-open");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxMedia.replaceChildren();
+        document.body.classList.remove("is-menu-open");
+      };
+
+      const renderGallery = () => {
+        const items = galleryItems.filter((item) => (
+          activeGalleryFilter === "all" ||
+          (activeGalleryFilter === "videos" && item.type === "video") ||
+          item.category === activeGalleryFilter
+        ));
+
+        galleryGrid.replaceChildren();
+        galleryEmpty.classList.toggle("is-visible", items.length === 0);
+
+        items.forEach((item) => {
+          const button = document.createElement("button");
+          button.className = "gallery-item";
+          button.type = "button";
+          button.setAttribute("aria-label", `פתיחת ${item.title}`);
+          button.append(createGalleryPreview(item));
+
+          const content = document.createElement("div");
+          content.className = "gallery-item-content";
+          content.innerHTML = `<span>${getGalleryItemLabel(item)}</span><strong>${item.title}</strong>`;
+          button.append(content);
+          button.addEventListener("click", () => openGalleryItem(item));
+          galleryGrid.append(button);
+        });
+      };
+
+      const loadCloudinaryGallery = async () => {
+        const feedUrls = [
+          "api/gallery-feed",
+          "/api/gallery-feed",
+          "/.netlify/functions/gallery-feed"
+        ];
+
+        for (const url of feedUrls) {
+          try {
+            const response = await fetch(url, { cache: "no-store" });
+            if (!response.ok) continue;
+
+            const data = await response.json();
+            if (Array.isArray(data.items)) {
+              galleryItems = data.items;
+              renderGallery();
+              return;
+            }
+          } catch (error) {
+            // The site can still run locally from galleryItems.js until deployment is configured.
+          }
+        }
+
+        renderGallery();
+      };
+
+      galleryFilters.forEach((filter) => {
+        filter.addEventListener("click", () => {
+          activeGalleryFilter = filter.dataset.galleryFilter;
+          galleryFilters.forEach((item) => item.classList.toggle("is-active", item === filter));
+          renderGallery();
+        });
+      });
+
+      document.querySelector(".lightbox-close").addEventListener("click", closeGalleryItem);
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) closeGalleryItem();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && lightbox.classList.contains("is-open")) {
+          closeGalleryItem();
+        }
+      });
+      loadCloudinaryGallery();
+
+      const contactParams = new URLSearchParams(window.location.search);
+      const requestedWorkshop = contactParams.get("workshop");
+      const requestedVersion = contactParams.get("version");
+      const leadForm = document.querySelector("#lead-form");
+      const selectionBox = document.querySelector("#form-selection");
+
+      const setLeadSelection = ({ workshop, version, workshopLabel = "שם הסדנה", versionLabel = "סוג הסדנה שנבחרה" }) => {
+        const workshopSelect = leadForm.elements.workshop;
+        const versionField = leadForm.elements.workshop_version;
+        const meetingCountField = leadForm.elements.meeting_count;
+        const activityTypeField = leadForm.elements.activity_type;
+        const selectionLines = [];
+
+        versionField.value = "";
+        meetingCountField.value = "";
+        activityTypeField.value = "";
+
+        if (workshop) {
+          workshopSelect.value = workshop;
+          if (workshopLabel === "סוג הפעילות") {
+            activityTypeField.value = workshop;
+          }
+          selectionLines.push(`${workshopLabel}: ${workshop}`);
+        }
+        if (version) {
+          if (versionLabel === "כמות המפגשים שנבחרה") {
+            meetingCountField.value = version;
+          } else {
+            versionField.value = version;
+          }
+          selectionLines.push(`${versionLabel}: ${version}`);
+        }
+
+        selectionBox.innerHTML = selectionLines.join("<br>");
+        selectionBox.hidden = selectionLines.length === 0;
+      };
+
+      document.querySelectorAll("[data-open-detail]").forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          document.querySelectorAll(".workshop-detail-panel").forEach((panel) => {
+            panel.classList.add("is-collapsed");
+          });
+          const details = document.querySelector(link.getAttribute("href"));
+          details.classList.remove("is-collapsed");
+          history.replaceState(null, "", link.getAttribute("href"));
+          details.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+
+      document.querySelectorAll("[data-quote-request]").forEach((button) => {
+        button.addEventListener("click", () => {
+          setLeadSelection({
+            workshop: button.dataset.workshop,
+            version: button.dataset.version,
+            workshopLabel: button.dataset.workshopLabel || "שם הסדנה",
+            versionLabel: button.dataset.versionLabel || "סוג הסדנה שנבחרה"
+          });
+          document.querySelector("#contact").scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+
+      if (requestedWorkshop || requestedVersion) {
+        setLeadSelection({ workshop: requestedWorkshop, version: requestedVersion });
+      }
+
+      document.querySelector("#lead-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        document.querySelector("#form-note").classList.add("is-visible");
+        event.currentTarget.reset();
+      });
+    </script>
+  </body>
+</html>
