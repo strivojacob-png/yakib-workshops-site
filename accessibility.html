@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="he" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>הצהרת נגישות | יקי בוזגלו</title>
+    <style>
+      :root {
+        --forest: #3e5c4a;
+        --olive: #6f7f55;
+        --cream: #f8f6f1;
+        --sand: #ebe5d7;
+        --gold: #b8954b;
+        --ink: #2b2b2b;
+        --muted: #66645d;
+        --white: #ffffff;
+        --line: rgba(62, 92, 74, .15);
+        --gold-strong: #a8642d;
+        --shadow: 0 18px 48px rgba(38, 63, 49, .1);
+        --radius: 24px;
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        scroll-behavior: smooth;
+        direction: ltr;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top right, rgba(184, 149, 75, .08), transparent 28%),
+          var(--cream);
+        color: var(--ink);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.8;
+        direction: ltr;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 12px clamp(18px, 5vw, 72px);
+        background: rgba(248, 246, 241, .92);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(62, 92, 74, .1);
+        direction: rtl;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--forest);
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 92px;
+        height: 48px;
+        object-fit: contain;
+      }
+
+      .top-links {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        color: var(--forest);
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .top-links a {
+        text-decoration: none;
+      }
+
+      .content-shell {
+        width: calc(100% - 36px);
+        max-width: 950px;
+        margin-inline: auto;
+        padding: clamp(38px, 6vw, 76px) 0 clamp(48px, 7vw, 88px);
+        direction: ltr;
+        text-align: right;
+      }
+
+      .page-hero {
+        margin-bottom: clamp(24px, 4vw, 42px);
+        direction: ltr;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--gold-strong);
+        font-size: 15px;
+        font-weight: 900;
+        letter-spacing: .03em;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+        color: var(--forest);
+        line-height: 1.2;
+      }
+
+      h1 {
+        font-size: clamp(42px, 7vw, 72px);
+        overflow-wrap: anywhere;
+      }
+
+      .intro {
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: clamp(18px, 2vw, 21px);
+        line-height: 1.75;
+      }
+
+      .updated {
+        display: inline-flex;
+        margin-top: 18px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(184, 149, 75, .14);
+        color: var(--forest);
+        font-size: 15px;
+        font-weight: 900;
+      }
+
+      .accessibility-list {
+        display: grid;
+        gap: 18px;
+      }
+
+      .accessibility-card {
+        scroll-margin-top: 96px;
+        padding: clamp(22px, 3.5vw, 34px);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, .86);
+        box-shadow: var(--shadow);
+        direction: rtl;
+        text-align: right;
+      }
+
+      .accessibility-card h2 {
+        margin-bottom: 12px;
+        font-size: clamp(24px, 3vw, 31px);
+        overflow-wrap: anywhere;
+      }
+
+      .accessibility-card p,
+      .accessibility-card li {
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.9;
+        overflow-wrap: anywhere;
+      }
+
+      .accessibility-card p {
+        margin: 0 0 12px;
+      }
+
+      .accessibility-card p:last-child {
+        margin-bottom: 0;
+      }
+
+      .accessibility-card ul {
+        margin: 8px 0 14px;
+        padding: 0;
+        direction: rtl;
+        text-align: right;
+        list-style: none;
+      }
+
+      .accessibility-card li {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: .45rem;
+        align-items: start;
+        direction: rtl;
+        text-align: right;
+      }
+
+      .accessibility-card li::before {
+        content: "•";
+        color: var(--muted);
+        font-weight: 900;
+        line-height: inherit;
+      }
+
+      strong {
+        color: var(--ink);
+        font-weight: 900;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 11px 20px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        background: var(--gold);
+        color: var(--forest);
+        font-weight: 900;
+        text-decoration: none;
+        transition: transform .22s ease, box-shadow .22s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 32px rgba(38, 63, 49, .13);
+      }
+
+      .button.secondary {
+        border-color: var(--line);
+        background: var(--white);
+      }
+
+      .site-footer {
+        padding: 34px clamp(18px, 5vw, 72px);
+        background: var(--forest);
+        color: var(--white);
+        direction: rtl;
+      }
+
+      .footer-inner {
+        width: min(950px, 100%);
+        margin-inline: auto;
+        display: grid;
+        gap: 14px;
+      }
+
+      .site-footer p,
+      .site-footer a {
+        color: rgba(255, 255, 255, .78);
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+      }
+
+      .footer-links a {
+        text-decoration: none;
+      }
+
+      @media (max-width: 640px) {
+        .site-header {
+          justify-content: center;
+          padding-block: 8px;
+        }
+
+        .brand img {
+          width: 86px;
+          height: 44px;
+        }
+
+        .brand span,
+        .top-links {
+          display: none;
+        }
+
+        .content-shell {
+          width: 100%;
+          max-width: none;
+          padding: 34px 14px 48px;
+        }
+
+        .accessibility-card {
+          width: 100%;
+          padding: 20px;
+          border-radius: 20px;
+        }
+
+        h1 {
+          font-size: 34px;
+        }
+
+        .accessibility-card h2 {
+          font-size: 22px;
+        }
+
+        .accessibility-card p,
+        .accessibility-card li {
+          font-size: 16px;
+          line-height: 1.85;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="assets/css/accessibility-widget.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="חזרה לדף הבית">
+        <img src="assets/images/logo.png" alt="לוגו יקי בוזגלו">
+        <span>יקי בוזגלו</span>
+      </a>
+      <nav class="top-links" aria-label="ניווט עמוד הצהרת נגישות">
+        <a href="index.html#workshops">סדנאות</a>
+        <a href="index.html#gallery">גלריה</a>
+        <a href="index.html#contact">יצירת קשר</a>
+      </nav>
+    </header>
+
+    <main class="content-shell">
+      <section class="page-hero" aria-labelledby="accessibility-title">
+        <p class="eyebrow">מסמך אתר</p>
+        <h1 id="accessibility-title">הצהרת נגישות</h1>
+        <span class="updated">עודכן לאחרונה: יולי 2026</span>
+        <p class="intro">יקי בוזגלו – סדנאות ותהליכים חווייתיים פועל להנגשת האתר עבור כלל המשתמשים, ובכלל זה אנשים עם מוגבלות, מתוך מחויבות לשוויון, נוחות שימוש וחוויית גלישה נגישה וברורה.</p>
+      </section>
+
+      <section class="accessibility-list" aria-label="סעיפי הצהרת הנגישות">
+        <article class="accessibility-card" id="site-adjustments">
+          <h2>התאמות הנגישות באתר</h2>
+          <p>האתר נבנה במטרה לעמוד ככל הניתן בדרישות <strong>תקן ישראלי 5568</strong> ובהנחיות <strong>WCAG 2.0 ברמה AA</strong>.</p>
+          <p>באתר בוצעו בין היתר ההתאמות הבאות:</p>
+          <ul>
+            <li>מבנה עמודים ברור והיררכי.</li>
+            <li>ניווט פשוט וברור.</li>
+            <li>התאמה לשימוש במקלדת.</li>
+            <li>טקסטים קריאים וברורים.</li>
+            <li>ניגודיות צבעים משופרת.</li>
+            <li>התאמה למובייל.</li>
+            <li>שימוש בכותרות מסודרות.</li>
+            <li>הוספת טקסט חלופי לתמונות ככל הניתן.</li>
+            <li>אפשרות הגדלת תצוגה באמצעות הדפדפן.</li>
+            <li>הימנעות משימוש באלמנטים מהבהבים.</li>
+          </ul>
+        </article>
+
+        <article class="accessibility-card" id="keyboard-use">
+          <h2>שימוש באתר באמצעות מקלדת</h2>
+          <p>ניתן לנווט באתר באמצעות המקלדת:</p>
+          <ul>
+            <li>מעבר בין קישורים וכפתורים: מקש Tab.</li>
+            <li>חזרה לאחור: Shift + Tab.</li>
+            <li>הפעלת קישור או כפתור: Enter.</li>
+            <li>גלילה בעמוד: מקשי החצים או מקש הרווח.</li>
+          </ul>
+        </article>
+
+        <article class="accessibility-card" id="partial-accessibility">
+          <h2>תוכן שאינו נגיש במלואו</h2>
+          <p>אנו עושים מאמץ להנגיש את כלל חלקי האתר. עם זאת, ייתכן שחלקים מסוימים באתר, לרבות תמונות, סרטונים, רכיבים חיצוניים או תכנים שהועלו בעבר, אינם נגישים באופן מלא.</p>
+          <p>אם נתקלתם בקושי בגלישה באתר, נשמח לקבל פנייה ולטפל בנושא בהקדם.</p>
+        </article>
+
+        <article class="accessibility-card" id="accessibility-contact">
+          <h2>פנייה בנושא נגישות</h2>
+          <p>לכל בקשה, שאלה או דיווח על בעיית נגישות ניתן לפנות אל:</p>
+          <p><strong>יקי בוזגלו</strong><br>טלפון: 052-602-2321<br>דוא"ל: yakib.officiai@gmail.com</p>
+        </article>
+
+        <article class="accessibility-card" id="follow-up">
+          <h2>המשך טיפול</h2>
+          <p>בפנייה בנושא נגישות יש לציין:</p>
+          <ul>
+            <li>תיאור הבעיה.</li>
+            <li>כתובת העמוד שבו נמצאה הבעיה.</li>
+            <li>סוג הדפדפן והמכשיר.</li>
+            <li>פרטי קשר לחזרה.</li>
+          </ul>
+          <p>אנו נעשה מאמץ לטפל בפנייה בהקדם האפשרי.</p>
+          <div class="actions">
+            <a class="button" href="index.html#contact">לעמוד יצירת קשר</a>
+            <a class="button secondary" href="index.html">חזרה לדף הבית</a>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <strong>יקי בוזגלו | סדנאות ותהליכים חווייתיים</strong>
+        <p>סדנאות לבתי ספר, מחלקות נוער, ארגונים, קהילות ומועצות.</p>
+        <div class="footer-links">
+          <a href="index.html#about">מי אני</a>
+          <a href="index.html#workshops">סדנאות</a>
+          <a href="index.html#contact">יצירת קשר</a>
+          <a href="privacy.html">מדיניות פרטיות</a>
+          <a href="accessibility.html">הצהרת נגישות</a>
+          <a href="terms.html">תנאי שימוש</a>
+        </div>
+      </div>
+    </footer>
+    <script src="assets/js/accessibility-widget.js"></script>
+  </body>
+</html>

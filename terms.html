@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="he" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>תנאי שימוש | יקי בוזגלו</title>
+    <style>
+      :root {
+        --forest: #3e5c4a;
+        --olive: #6f7f55;
+        --cream: #f8f6f1;
+        --sand: #ebe5d7;
+        --gold: #b8954b;
+        --ink: #2b2b2b;
+        --muted: #66645d;
+        --white: #ffffff;
+        --line: rgba(62, 92, 74, .15);
+        --gold-strong: #a8642d;
+        --shadow: 0 18px 48px rgba(38, 63, 49, .1);
+        --radius: 24px;
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        scroll-behavior: smooth;
+        direction: ltr;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top right, rgba(184, 149, 75, .08), transparent 28%),
+          var(--cream);
+        color: var(--ink);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.8;
+        direction: ltr;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 12px clamp(18px, 5vw, 72px);
+        background: rgba(248, 246, 241, .92);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(62, 92, 74, .1);
+        direction: rtl;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--forest);
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 92px;
+        height: 48px;
+        object-fit: contain;
+      }
+
+      .top-links {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        color: var(--forest);
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .top-links a {
+        text-decoration: none;
+      }
+
+      .content-shell {
+        width: calc(100% - 36px);
+        max-width: 950px;
+        margin-inline: auto;
+        padding: clamp(38px, 6vw, 76px) 0 clamp(48px, 7vw, 88px);
+        direction: ltr;
+        text-align: right;
+      }
+
+      .page-hero {
+        margin-bottom: clamp(24px, 4vw, 42px);
+        direction: ltr;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--gold-strong);
+        font-size: 15px;
+        font-weight: 900;
+        letter-spacing: .03em;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+        color: var(--forest);
+        line-height: 1.2;
+      }
+
+      h1 {
+        font-size: clamp(42px, 7vw, 72px);
+        overflow-wrap: anywhere;
+      }
+
+      .intro {
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: clamp(18px, 2vw, 21px);
+        line-height: 1.75;
+      }
+
+      .updated {
+        display: inline-flex;
+        margin-top: 18px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(184, 149, 75, .14);
+        color: var(--forest);
+        font-size: 15px;
+        font-weight: 900;
+      }
+
+      .terms-list {
+        display: grid;
+        gap: 18px;
+      }
+
+      .term-card {
+        scroll-margin-top: 96px;
+        padding: clamp(22px, 3.5vw, 34px);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, .86);
+        box-shadow: var(--shadow);
+        direction: rtl;
+        text-align: right;
+      }
+
+      .term-card h2 {
+        margin-bottom: 12px;
+        font-size: clamp(24px, 3vw, 31px);
+        overflow-wrap: anywhere;
+      }
+
+      .term-card p,
+      .term-card li {
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.9;
+        overflow-wrap: anywhere;
+      }
+
+      .term-card p {
+        margin: 0 0 12px;
+      }
+
+      .term-card p:last-child {
+        margin-bottom: 0;
+      }
+
+      .term-card ul {
+        margin: 8px 0 14px;
+        padding: 0;
+        direction: rtl;
+        text-align: right;
+        list-style: none;
+      }
+
+      .term-card li {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: .45rem;
+        align-items: start;
+        direction: rtl;
+        text-align: right;
+      }
+
+      .term-card li::before {
+        content: "•";
+        color: var(--muted);
+        font-weight: 900;
+        line-height: inherit;
+      }
+
+      strong {
+        color: var(--ink);
+        font-weight: 900;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 11px 20px;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        background: var(--gold);
+        color: var(--forest);
+        font-weight: 900;
+        text-decoration: none;
+        transition: transform .22s ease, box-shadow .22s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 32px rgba(38, 63, 49, .13);
+      }
+
+      .button.secondary {
+        border-color: var(--line);
+        background: var(--white);
+      }
+
+      .site-footer {
+        padding: 34px clamp(18px, 5vw, 72px);
+        background: var(--forest);
+        color: var(--white);
+        direction: rtl;
+      }
+
+      .footer-inner {
+        width: min(950px, 100%);
+        margin-inline: auto;
+        display: grid;
+        gap: 14px;
+      }
+
+      .site-footer p,
+      .site-footer a {
+        color: rgba(255, 255, 255, .78);
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+      }
+
+      .footer-links a {
+        text-decoration: none;
+      }
+
+      @media (max-width: 640px) {
+        .site-header {
+          justify-content: center;
+          padding-block: 8px;
+        }
+
+        .brand img {
+          width: 86px;
+          height: 44px;
+        }
+
+        .brand span,
+        .top-links {
+          display: none;
+        }
+
+        .content-shell {
+          width: 100%;
+          max-width: none;
+          padding: 34px 14px 48px;
+        }
+
+        .term-card {
+          width: 100%;
+          padding: 20px;
+          border-radius: 20px;
+        }
+
+        h1 {
+          font-size: 34px;
+        }
+
+        .term-card h2 {
+          font-size: 22px;
+        }
+
+        .term-card p,
+        .term-card li {
+          font-size: 16px;
+          line-height: 1.85;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="assets/css/accessibility-widget.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="חזרה לדף הבית">
+        <img src="assets/images/logo.png" alt="לוגו יקי בוזגלו">
+        <span>יקי בוזגלו</span>
+      </a>
+      <nav class="top-links" aria-label="ניווט עמוד תנאי שימוש">
+        <a href="index.html#workshops">סדנאות</a>
+        <a href="index.html#gallery">גלריה</a>
+        <a href="index.html#contact">יצירת קשר</a>
+      </nav>
+    </header>
+
+    <main class="content-shell">
+      <section class="page-hero" aria-labelledby="terms-title">
+        <p class="eyebrow">מסמך אתר</p>
+        <h1 id="terms-title">תנאי שימוש</h1>
+        <span class="updated">עודכן לאחרונה: יולי 2026</span>
+        <p class="intro">ברוכים הבאים לאתר של <strong>יקי בוזגלו – סדנאות ותהליכים חווייתיים</strong>. השימוש באתר כפוף לתנאי השימוש המפורטים להלן. גלישה באתר או שימוש בו מהווים הסכמה מלאה לתנאים אלו.</p>
+      </section>
+
+      <section class="terms-list" aria-label="סעיפי תנאי השימוש">
+        <article class="term-card" id="purpose">
+          <h2>1. מטרת האתר</h2>
+          <p>האתר נועד להציג מידע אודות הסדנאות, התהליכים והשירותים שמציע יקי בוזגלו, ולאפשר יצירת קשר לצורך קבלת מידע, התאמת סדנה או קבלת הצעת מחיר.</p>
+        </article>
+
+        <article class="term-card" id="site-use">
+          <h2>2. שימוש באתר</h2>
+          <p>המשתמש מתחייב לעשות שימוש באתר באופן <strong>חוקי, הוגן וסביר</strong>.</p>
+          <p>אין לעשות באתר או בתכניו שימוש העלול לפגוע באתר, במפעיליו, במשתמשים אחרים או בזכויות של צדדים שלישיים.</p>
+        </article>
+
+        <article class="term-card" id="intellectual-property">
+          <h2>3. קניין רוחני</h2>
+          <p>כל התכנים באתר, לרבות:</p>
+          <ul>
+            <li>טקסטים</li>
+            <li>תמונות</li>
+            <li>סרטונים</li>
+            <li>עיצובים</li>
+            <li>גרפיקה</li>
+            <li>לוגו</li>
+            <li>מסמכים</li>
+            <li>חומרי הדרכה</li>
+            <li>קבצים וכל תוכן אחר</li>
+          </ul>
+          <p>מוגנים בזכויות יוצרים וקניין רוחני.</p>
+          <p>אין להעתיק, לשכפל, להפיץ, לפרסם, לערוך או לעשות שימוש כלשהו בתכני האתר ללא <strong>אישור מראש ובכתב</strong> מבעל האתר.</p>
+          <p>התמונות והסרטונים המוצגים באתר מתעדים פעילויות, סדנאות ותהליכים שהועברו על ידי יקי בוזגלו, והשימוש בהם מותר באתר זה בלבד.</p>
+        </article>
+
+        <article class="term-card" id="logos">
+          <h2>4. שימוש בלוגואים של גופים וארגונים</h2>
+          <p>באתר עשויים להופיע שמות, לוגואים וסימנים מסחריים של רשויות מקומיות, בתי ספר, מוסדות, עמותות וארגונים אשר השתתפו בסדנאות, בתהליכים או בשיתופי פעולה עם יקי בוזגלו.</p>
+          <p>הלוגואים מוצגים לצורך הצגת ניסיון מקצועי ושיתופי פעולה בלבד.</p>
+          <p>כל הזכויות בלוגואים, בשמות ובסימנים המסחריים שייכות לבעליהם בלבד.</p>
+          <p>הצגת הלוגואים באתר אינה מהווה הצהרה על <strong>שותפות עסקית קבועה, חסות, המלצה רשמית או התקשרות מחייבת</strong> מעבר לפעילות שבוצעה בפועל.</p>
+        </article>
+
+        <article class="term-card" id="workshop-images">
+          <h2>5. שימוש בתמונות מהסדנאות</h2>
+          <p>התמונות המופיעות באתר צולמו במהלך סדנאות, פעילויות ותהליכים חינוכיים שהועברו על ידי יקי בוזגלו.</p>
+          <p>מטרת הצגתן היא להמחיש את אופי הפעילות והעשייה בלבד.</p>
+          <p>אין לעשות שימוש, העתקה, הפצה או פרסום מחדש של התמונות ללא <strong>אישור מראש ובכתב</strong>.</p>
+        </article>
+
+        <article class="term-card" id="accuracy">
+          <h2>6. דיוק המידע</h2>
+          <p>נעשה מאמץ להציג באתר מידע עדכני, מדויק ורלוונטי.</p>
+          <p>עם זאת, ייתכנו שינויים, טעויות או אי־דיוקים, ולכן המידע באתר אינו מהווה התחייבות.</p>
+        </article>
+
+        <article class="term-card" id="service">
+          <h2>7. קבלת שירות</h2>
+          <p>שליחת טופס באתר או יצירת קשר אינם מהווים התחייבות למתן שירות.</p>
+          <p>כל התקשרות תתבצע רק לאחר שיחה, תיאום ואישור בין הצדדים.</p>
+        </article>
+
+        <article class="term-card" id="liability">
+          <h2>8. אחריות</h2>
+          <p>האתר מוצע לשימוש כפי שהוא <strong>(AS IS)</strong>.</p>
+          <p>מפעיל האתר אינו אחראי לנזק ישיר או עקיף העלול להיגרם כתוצאה מהשימוש באתר או מהסתמכות על המידע המופיע בו.</p>
+        </article>
+
+        <article class="term-card" id="external-links">
+          <h2>9. קישורים חיצוניים</h2>
+          <p>ייתכן שהאתר יכלול קישורים לאתרים חיצוניים.</p>
+          <p>מפעיל האתר אינו אחראי לתוכנם, לזמינותם או למדיניות הפרטיות שלהם.</p>
+        </article>
+
+        <article class="term-card" id="changes">
+          <h2>10. שינויים באתר ובתנאי השימוש</h2>
+          <p>מפעיל האתר רשאי לעדכן את האתר ואת תנאי השימוש בכל עת וללא הודעה מוקדמת.</p>
+          <p>הגרסה המעודכנת שתפורסם באתר תהיה הגרסה המחייבת.</p>
+        </article>
+
+        <article class="term-card" id="law">
+          <h2>11. הדין החל</h2>
+          <p>על תנאי שימוש אלו יחולו דיני מדינת ישראל.</p>
+          <p>כל מחלוקת הנוגעת לשימוש באתר תתברר בבתי המשפט המוסמכים בישראל.</p>
+        </article>
+
+        <article class="term-card" id="contact">
+          <h2>12. יצירת קשר</h2>
+          <p>לשאלות או הבהרות בנוגע לתנאי השימוש ניתן ליצור קשר באמצעות עמוד "יצירת קשר" באתר.</p>
+          <div class="actions">
+            <a class="button" href="index.html#contact">לעמוד יצירת קשר</a>
+            <a class="button secondary" href="index.html">חזרה לדף הבית</a>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <strong>יקי בוזגלו | סדנאות ותהליכים חווייתיים</strong>
+        <p>סדנאות לבתי ספר, מחלקות נוער, ארגונים, קהילות ומועצות.</p>
+        <div class="footer-links">
+          <a href="index.html#about">מי אני</a>
+          <a href="index.html#workshops">סדנאות</a>
+          <a href="index.html#contact">יצירת קשר</a>
+          <a href="privacy.html">מדיניות פרטיות</a>
+          <a href="accessibility.html">הצהרת נגישות</a>
+          <a href="terms.html">תנאי שימוש</a>
+        </div>
+      </div>
+    </footer>
+    <script src="assets/js/accessibility-widget.js"></script>
+  </body>
+</html>

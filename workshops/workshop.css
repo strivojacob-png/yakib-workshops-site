@@ -7,6 +7,7 @@
   --ink: #2b2b2b;
   --muted: #66645d;
   --gold: #b8954b;
+  --gold-strong: #a8642d;
   --line: rgba(62, 92, 74, .15);
   --shadow: 0 18px 50px rgba(38, 63, 49, .12);
 }
@@ -98,7 +99,7 @@ p, li { color: var(--muted); }
 }
 
 .eyebrow {
-  color: #ead39b;
+  color: var(--gold-strong);
   font-weight: 900;
   margin-bottom: 12px;
 }
@@ -169,7 +170,26 @@ h1 {
 
 .card ul {
   margin: 0;
-  padding-inline-start: 22px;
+  padding: 0;
+  direction: rtl;
+  text-align: right;
+  list-style: none;
+}
+
+.card li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .45rem;
+  align-items: start;
+  direction: rtl;
+  text-align: right;
+}
+
+.card li::before {
+  content: "•";
+  color: var(--muted);
+  font-weight: 900;
+  line-height: inherit;
 }
 
 .cta {
