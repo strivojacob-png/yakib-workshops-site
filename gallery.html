@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="גלריית תמונות וסרטונים מהסדנאות והתהליכים של יקי בוזגלו.">
+    <title>גלריה מלאה | יקי בוזגלו</title>
+    <style>
+      :root {
+        --forest: #263f31;
+        --green: #3e5c4a;
+        --olive: #76805a;
+        --cream: #f8f6f1;
+        --sand: #eee7d8;
+        --white: #ffffff;
+        --ink: #2b2b2b;
+        --muted: #66645d;
+        --gold: #b8954b;
+        --gold-strong: #a8642d;
+        --line: rgba(62, 92, 74, .15);
+        --shadow: 0 18px 50px rgba(38, 63, 49, .12);
+        --radius: 24px;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--ink);
+        font-family: Arial, "Helvetica Neue", sans-serif;
+        line-height: 1.65;
+      }
+      body.is-lightbox-open { overflow: hidden; }
+      a { color: inherit; }
+      img { display: block; max-width: 100%; }
+      h1, h2, h3, p { margin: 0; letter-spacing: 0; overflow-wrap: anywhere; }
+      p { color: var(--muted); }
+
+      .topbar {
+        position: sticky;
+        inset: 0 0 auto;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 10px clamp(16px, 4vw, 54px);
+        background: rgba(248, 246, 241, .9);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(18px);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--forest);
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 100px;
+        height: 50px;
+        object-fit: contain;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 46px;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        background: var(--gold);
+        color: var(--forest);
+        font: inherit;
+        font-weight: 900;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .hero {
+        display: grid;
+        align-items: end;
+        min-height: clamp(260px, 30vw, 360px);
+        color: var(--white);
+        background:
+          radial-gradient(circle at 18% 20%, rgba(184, 149, 75, .32), transparent 34%),
+          linear-gradient(135deg, rgba(38, 63, 49, .98), rgba(118, 128, 90, .9));
+      }
+
+      .hero-copy {
+        width: min(1050px, 100%);
+        margin-inline: auto;
+        padding: clamp(62px, 8vw, 92px) clamp(18px, 5vw, 72px) clamp(34px, 5vw, 52px);
+      }
+
+      .eyebrow {
+        margin-bottom: 12px;
+        color: var(--gold-strong);
+        font-weight: 900;
+      }
+
+      h1 {
+        max-width: 900px;
+        color: var(--white);
+        font-size: clamp(38px, 7vw, 70px);
+        line-height: 1.05;
+      }
+
+      .hero-copy p:last-child {
+        max-width: 780px;
+        margin-top: 16px;
+        color: rgba(255, 255, 255, .9);
+        font-size: clamp(17px, 2.2vw, 22px);
+        font-weight: 800;
+      }
+
+      .section {
+        padding: clamp(28px, 4vw, 50px) clamp(18px, 5vw, 72px);
+      }
+
+      .section-inner {
+        width: min(1160px, 100%);
+        margin-inline: auto;
+      }
+
+      .gallery-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .gallery-filter {
+        padding: 9px 15px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .78);
+        color: var(--forest);
+        font: inherit;
+        font-size: 14px;
+        font-weight: 900;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background .2s ease, border-color .2s ease, transform .2s ease;
+      }
+
+      .gallery-filter:hover,
+      .gallery-filter:focus-visible {
+        transform: translateY(-1px);
+        border-color: rgba(184, 149, 75, .42);
+      }
+
+      .gallery-filter.is-active {
+        background: var(--forest);
+        border-color: var(--forest);
+        color: var(--white);
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .gallery-item {
+        position: relative;
+        min-height: clamp(230px, 27vw, 320px);
+        overflow: hidden;
+        border: 0;
+        border-radius: var(--radius);
+        background: var(--sand);
+        box-shadow: 0 12px 36px rgba(38, 63, 49, .08);
+        color: var(--white);
+        cursor: pointer;
+        text-align: right;
+      }
+
+      .gallery-item-media {
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(135deg, rgba(62, 92, 74, .28), rgba(184, 149, 75, .18)),
+          var(--sand);
+      }
+
+      .gallery-item-media img,
+      .gallery-item-media video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .gallery-item::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, rgba(28, 43, 34, .72), rgba(28, 43, 34, .12) 60%);
+      }
+
+      .gallery-item-content {
+        position: absolute;
+        inset: auto 0 0;
+        z-index: 1;
+        padding: 20px;
+      }
+
+      .gallery-item-content span {
+        display: inline-flex;
+        margin-bottom: 8px;
+        color: #f1dca6;
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .gallery-item-content strong {
+        display: block;
+        color: var(--white);
+        font-size: 22px;
+        line-height: 1.2;
+      }
+
+      .gallery-empty {
+        padding: 26px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, .82);
+        color: var(--forest);
+        font-weight: 900;
+        text-align: center;
+      }
+
+      .site-footer {
+        padding: 34px clamp(18px, 5vw, 72px);
+        background: var(--forest);
+        color: var(--white);
+        direction: rtl;
+      }
+
+      .footer-inner {
+        width: min(1160px, 100%);
+        margin-inline: auto;
+        display: grid;
+        gap: 14px;
+      }
+
+      .site-footer p,
+      .site-footer a {
+        color: rgba(255, 255, 255, .78);
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 18px;
+      }
+
+      .footer-links a {
+        text-decoration: none;
+      }
+
+      .social-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        margin-top: 2px;
+      }
+
+      .social-link {
+        display: inline-flex;
+        width: 38px;
+        height: 38px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, .18);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .08);
+        color: var(--white);
+        text-decoration: none;
+        transition: transform .22s ease, background .22s ease, border-color .22s ease;
+      }
+
+      .social-link:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, .34);
+        background: rgba(255, 255, 255, .15);
+      }
+
+      .social-link svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 80;
+        display: none;
+        place-items: center;
+        padding: clamp(18px, 4vw, 48px);
+        background: rgba(28, 43, 34, .84);
+      }
+
+      .lightbox.is-open {
+        display: grid;
+      }
+
+      .lightbox-panel {
+        position: relative;
+        width: min(980px, 100%);
+        overflow: hidden;
+        border-radius: var(--radius);
+        background: var(--cream);
+        box-shadow: 0 24px 80px rgba(0, 0, 0, .32);
+      }
+
+      .lightbox-media {
+        display: grid;
+        min-height: min(68vh, 680px);
+        background: var(--forest);
+      }
+
+      .lightbox-media img,
+      .lightbox-media video {
+        width: 100%;
+        height: min(68vh, 680px);
+        object-fit: contain;
+      }
+
+      .lightbox-caption {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 18px 20px;
+      }
+
+      .lightbox-caption h2 {
+        color: var(--forest);
+        font-size: 22px;
+      }
+
+      .lightbox-caption p {
+        color: var(--gold-strong);
+        font-weight: 900;
+      }
+
+      .lightbox-close,
+      .lightbox-nav {
+        border: 0;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .92);
+        color: var(--forest);
+        font: inherit;
+        font-weight: 900;
+        cursor: pointer;
+        box-shadow: 0 12px 34px rgba(0, 0, 0, .18);
+      }
+
+      .lightbox-close {
+        width: 44px;
+        height: 44px;
+        font-size: 26px;
+      }
+
+      .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        width: 44px;
+        height: 44px;
+        transform: translateY(-50%);
+        font-size: 28px;
+      }
+
+      .lightbox-nav.prev { right: 16px; }
+      .lightbox-nav.next { left: 16px; }
+
+      @media (min-width: 640px) {
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 980px) {
+        .gallery-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 620px) {
+        .brand span { display: none; }
+        .topbar .button { min-height: 42px; padding-inline: 14px; font-size: 14px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="index.html#gallery">
+        <img src="assets/images/logo.png" alt="לוגו יקי בוזגלו">
+        <span>חזרה לדף הבית</span>
+      </a>
+      <a class="button" href="index.html#contact">יצירת קשר</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">גלריה מלאה</p>
+          <h1 id="gallery-title">הצצה לרגעים מהשטח</h1>
+          <p id="gallery-lead">כל התמונות והסרטונים מהקטגוריה שנבחרה.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-inner">
+          <nav class="gallery-filters" aria-label="סינון גלריה">
+            <a class="gallery-filter" href="gallery.html?category=all" data-gallery-filter="all">הכל</a>
+            <a class="gallery-filter" href="gallery.html?category=mevashlim" data-gallery-filter="mevashlim">מבשלים חיבור</a>
+            <a class="gallery-filter" href="gallery.html?category=etgar" data-gallery-filter="etgar">אתגר מחבר</a>
+            <a class="gallery-filter" href="gallery.html?category=process" data-gallery-filter="process">תהליכים קבוצתיים</a>
+            <a class="gallery-filter" href="gallery.html?category=schools" data-gallery-filter="schools">בתי ספר וצוותי חינוך</a>
+            <a class="gallery-filter" href="gallery.html?category=videos" data-gallery-filter="videos">סרטונים</a>
+          </nav>
+          <div class="gallery-grid" id="full-gallery-grid" aria-live="polite"></div>
+          <div class="gallery-empty" id="full-gallery-empty" hidden>בקטגוריה הזו יתווספו פריטים בהמשך.</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <strong>יקי בוזגלו | סדנאות ותהליכים חווייתיים</strong>
+        <p>סדנאות לבתי ספר, מחלקות נוער, ארגונים, קהילות ומועצות.</p>
+        <div class="footer-links">
+          <a href="index.html#about">מי אני</a>
+          <a href="index.html#workshops">סדנאות</a>
+          <a href="index.html#contact">יצירת קשר</a>
+          <a href="privacy.html">מדיניות פרטיות</a>
+          <a href="accessibility.html">הצהרת נגישות</a>
+          <a href="terms.html">תנאי שימוש</a>
+        </div>
+        <div class="social-links" aria-label="רשתות חברתיות">
+          <a class="social-link" href="coming-soon.html" data-social-link="facebook" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h2V5h-2c-3 0-5 2-5 5v2H7v3h2v7h3v-7h3l1-3h-4v-2c0-1.1.9-2 2-2Z"/></svg>
+          </a>
+          <a class="social-link" href="coming-soon.html" data-social-link="instagram" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7Zm5 3.5A3.5 3.5 0 1 1 12 15.5 3.5 3.5 0 0 1 12 8.5Zm0 3A.5.5 0 1 0 12 12.5.5.5 0 0 0 12 11.5Zm4.8-4.2a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Z"/></svg>
+          </a>
+          <a class="social-link" href="coming-soon.html" data-social-link="tiktok" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3c.3 2.2 1.7 3.8 4 4.2V10a7.2 7.2 0 0 1-4-1.2v6.6A5.6 5.6 0 1 1 10.4 10c.4 0 .8 0 1.1.1v3.1a2.4 2.4 0 1 0 1.5 2.2V3h3Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="lightbox" id="full-gallery-lightbox" aria-hidden="true">
+      <div class="lightbox-panel" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+        <div class="lightbox-media" id="lightbox-media"></div>
+        <button class="lightbox-nav prev" type="button" aria-label="תמונה קודמת">‹</button>
+        <button class="lightbox-nav next" type="button" aria-label="תמונה הבאה">›</button>
+        <div class="lightbox-caption">
+          <div>
+            <p id="lightbox-category"></p>
+            <h2 id="lightbox-title"></h2>
+          </div>
+          <button class="lightbox-close" type="button" aria-label="סגירת צפייה">×</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="galleryItems.js"></script>
+    <script src="assets/js/social-links.js"></script>
+    <script>
+      const galleryItems = window.galleryItems || [];
+      const categoryLabels = {
+        all: "הכל",
+        gallery: "גלריה",
+        mevashlim: "מבשלים חיבור",
+        etgar: "אתגר מחבר",
+        process: "תהליכים קבוצתיים",
+        schools: "בתי ספר וצוותי חינוך",
+        videos: "סרטונים"
+      };
+      const params = new URLSearchParams(window.location.search);
+      const activeCategory = params.get("category") || "all";
+      const galleryGrid = document.querySelector("#full-gallery-grid");
+      const galleryEmpty = document.querySelector("#full-gallery-empty");
+      const galleryTitle = document.querySelector("#gallery-title");
+      const galleryLead = document.querySelector("#gallery-lead");
+      const lightbox = document.querySelector("#full-gallery-lightbox");
+      const lightboxMedia = document.querySelector("#lightbox-media");
+      const lightboxTitle = document.querySelector("#lightbox-title");
+      const lightboxCategory = document.querySelector("#lightbox-category");
+      let visibleItems = [];
+      let activeIndex = 0;
+
+      const getItemSrc = (item) => {
+        if (item.src) return item.src;
+        const basePath = item.type === "video" ? "assets/videos/gallery/" : "assets/images/gallery/";
+        return `${basePath}${item.fileName}`;
+      };
+
+      const getItemLabel = (item) => categoryLabels[item.category] || item.category || "גלריה";
+
+      const getFilteredItems = () => (
+        galleryItems.filter((item) => (
+          activeCategory === "all" ||
+          (activeCategory === "videos" && item.type === "video") ||
+          item.category === activeCategory
+        ))
+      );
+
+      const createPreview = (item, index) => {
+        const button = document.createElement("button");
+        button.className = "gallery-item";
+        button.type = "button";
+        button.setAttribute("aria-label", `פתיחת ${item.title}`);
+
+        const media = document.createElement("div");
+        media.className = "gallery-item-media";
+        const src = getItemSrc(item);
+
+        if (item.type === "video") {
+          const video = document.createElement("video");
+          video.src = src;
+          video.muted = true;
+          video.playsInline = true;
+          media.append(video);
+        } else {
+          const image = document.createElement("img");
+          image.src = src;
+          image.alt = item.alt || item.title;
+          image.loading = "lazy";
+          media.append(image);
+        }
+
+        const content = document.createElement("div");
+        content.className = "gallery-item-content";
+        content.innerHTML = `<span>${getItemLabel(item)}</span><strong>${item.title}</strong>`;
+
+        button.append(media, content);
+        button.addEventListener("click", () => openLightbox(index));
+        return button;
+      };
+
+      const renderGallery = () => {
+        visibleItems = getFilteredItems();
+        galleryTitle.textContent = activeCategory === "all" ? "הצצה לרגעים מהשטח" : categoryLabels[activeCategory] || "גלריה";
+        galleryLead.textContent = activeCategory === "all"
+          ? "כל התמונות והסרטונים מהסדנאות, התהליכים והפעילויות שלנו."
+          : `כל התמונות והסרטונים בקטגוריית ${categoryLabels[activeCategory] || "גלריה"}.`;
+
+        document.querySelectorAll("[data-gallery-filter]").forEach((link) => {
+          link.classList.toggle("is-active", link.dataset.galleryFilter === activeCategory);
+        });
+
+        galleryGrid.replaceChildren();
+        galleryEmpty.hidden = visibleItems.length > 0;
+
+        visibleItems.forEach((item, index) => {
+          galleryGrid.append(createPreview(item, index));
+        });
+      };
+
+      const renderLightboxMedia = () => {
+        const item = visibleItems[activeIndex];
+        const src = getItemSrc(item);
+        lightboxMedia.replaceChildren();
+
+        if (item.type === "video") {
+          const video = document.createElement("video");
+          video.src = src;
+          video.controls = true;
+          video.playsInline = true;
+          lightboxMedia.append(video);
+        } else {
+          const image = document.createElement("img");
+          image.src = src;
+          image.alt = item.alt || item.title;
+          lightboxMedia.append(image);
+        }
+
+        lightboxTitle.textContent = item.title;
+        lightboxCategory.textContent = getItemLabel(item);
+      };
+
+      const openLightbox = (index) => {
+        activeIndex = index;
+        renderLightboxMedia();
+        lightbox.classList.add("is-open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.classList.add("is-lightbox-open");
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.remove("is-open");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxMedia.replaceChildren();
+        document.body.classList.remove("is-lightbox-open");
+      };
+
+      const moveLightbox = (direction) => {
+        if (!visibleItems.length) return;
+        activeIndex = (activeIndex + direction + visibleItems.length) % visibleItems.length;
+        renderLightboxMedia();
+      };
+
+      document.querySelector(".lightbox-close").addEventListener("click", closeLightbox);
+      document.querySelector(".lightbox-nav.prev").addEventListener("click", () => moveLightbox(-1));
+      document.querySelector(".lightbox-nav.next").addEventListener("click", () => moveLightbox(1));
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (!lightbox.classList.contains("is-open")) return;
+        if (event.key === "Escape") closeLightbox();
+        if (event.key === "ArrowRight") moveLightbox(-1);
+        if (event.key === "ArrowLeft") moveLightbox(1);
+      });
+
+      renderGallery();
+    </script>
+  </body>
+</html>

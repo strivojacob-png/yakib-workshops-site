@@ -266,6 +266,52 @@
         text-decoration: none;
       }
 
+      .social-links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        margin-top: 2px;
+      }
+
+      .social-link {
+        display: inline-flex;
+        width: 38px;
+        height: 38px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, .18);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, .08);
+        color: var(--white);
+        text-decoration: none;
+        transition: transform .22s ease, background .22s ease, border-color .22s ease;
+      }
+
+      .social-link:hover {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, .34);
+        background: rgba(255, 255, 255, .15);
+      }
+
+      .social-link svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
       @media (max-width: 640px) {
         .site-header {
           justify-content: center;
@@ -439,8 +485,20 @@
           <a href="accessibility.html">הצהרת נגישות</a>
           <a href="terms.html">תנאי שימוש</a>
         </div>
+        <div class="social-links" aria-label="רשתות חברתיות">
+          <a class="social-link" href="coming-soon.html" data-social-link="facebook" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h2V5h-2c-3 0-5 2-5 5v2H7v3h2v7h3v-7h3l1-3h-4v-2c0-1.1.9-2 2-2Z"/></svg>
+          </a>
+          <a class="social-link" href="coming-soon.html" data-social-link="instagram" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7Zm5 3.5A3.5 3.5 0 1 1 12 15.5 3.5 3.5 0 0 1 12 8.5Zm0 3A.5.5 0 1 0 12 12.5.5.5 0 0 0 12 11.5Zm4.8-4.2a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Z"/></svg>
+          </a>
+          <a class="social-link" href="coming-soon.html" data-social-link="tiktok" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3c.3 2.2 1.7 3.8 4 4.2V10a7.2 7.2 0 0 1-4-1.2v6.6A5.6 5.6 0 1 1 10.4 10c.4 0 .8 0 1.1.1v3.1a2.4 2.4 0 1 0 1.5 2.2V3h3Z"/></svg>
+          </a>
+        </div>
       </div>
     </footer>
+    <script src="assets/js/social-links.js"></script>
     <script src="assets/js/accessibility-widget.js"></script>
   </body>
 </html>
