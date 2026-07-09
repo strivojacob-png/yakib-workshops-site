@@ -1840,7 +1840,7 @@
             </div>
           </div>
           <div class="contact-panel reveal">
-            <form id="lead-form" name="lead-form" method="POST" action="/thank-you.html" accept-charset="UTF-8" data-netlify="true" netlify netlify-honeypot="bot-field">
+            <form id="lead-form" name="lead-form" method="POST" action="/" accept-charset="UTF-8" data-netlify="true" netlify netlify-honeypot="bot-field">
               <input type="hidden" name="form-name" value="lead-form">
               <p class="hidden-field" aria-hidden="true">
                 <label>לא למלא<input name="bot-field" tabindex="-1" autocomplete="off"></label>
@@ -1864,6 +1864,7 @@
               <div class="form-selection" id="form-selection" hidden></div>
               <label>הודעה<textarea name="message"></textarea></label>
               <button class="button button-primary" type="submit">שליחת פרטים</button>
+              <div class="form-note" id="form-note" role="status" aria-live="polite"></div>
             </form>
           </div>
         </div>
@@ -2248,6 +2249,51 @@
       if (requestedWorkshop || requestedVersion) {
         setLeadSelection({ workshop: requestedWorkshop, version: requestedVersion });
       }
+
+      const encodeFormData = (formData) => new URLSearchParams(formData).toString();
+
+      const showFormNote = (message, type = "success") => {
+        const formNote = document.querySelector("#form-note");
+        formNote.textContent = message;
+        formNote.classList.toggle("is-error", type === "error");
+        formNote.classList.add("is-visible");
+      };
+
+      leadForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const submitButton = leadForm.querySelector('[type="submit"]');
+        const formData = new FormData(leadForm);
+
+        submitButton.disabled = true;
+        submitButton.textContent = "שולח...";
+
+        try {
+          if (window.location.protocol === "file:") {
+            throw new Error("Netlify Forms works only from the deployed Netlify site, not from file://.");
+          }
+
+          const response = await fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encodeFormData(formData)
+          });
+
+          if (!response.ok) {
+            throw new Error(`Netlify form submission failed with status ${response.status}`);
+          }
+
+          showFormNote("תודה, הפרטים נשלחו בהצלחה. נחזור אליכם בהקדם.");
+          leadForm.reset();
+          selectionBox.hidden = true;
+          selectionBox.innerHTML = "";
+        } catch (error) {
+          console.error(error);
+          showFormNote("לא הצלחנו לשלוח את הפרטים כרגע. יש לנסות מהאתר שפורסם ב-Netlify או לפנות בוואטסאפ.", "error");
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = "שליחת פרטים";
+        }
+      });
 
     </script>
     <script src="assets/js/social-links.js"></script>
