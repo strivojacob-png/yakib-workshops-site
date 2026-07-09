@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="תודה על הפנייה ליקי בוזגלו - סדנאות ותהליכים חווייתיים.">
+    <title>תודה על הפנייה | יקי בוזגלו</title>
+    <style>
+      :root {
+        --forest: #263f31;
+        --green: #3e5c4a;
+        --cream: #f8f6f1;
+        --white: #ffffff;
+        --ink: #2b2b2b;
+        --muted: #66645d;
+        --gold-strong: #a8642d;
+        --line: rgba(62, 92, 74, .15);
+        --shadow: 0 18px 42px rgba(38, 63, 49, .12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 28px;
+        background: var(--cream);
+        color: var(--ink);
+        font-family: "Assistant", "Noto Sans Hebrew", Arial, sans-serif;
+        line-height: 1.7;
+      }
+
+      .thank-you-card {
+        width: min(720px, 100%);
+        padding: clamp(32px, 6vw, 62px);
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: var(--white);
+        box-shadow: var(--shadow);
+        text-align: center;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--gold-strong);
+        font-size: 1rem;
+        font-weight: 900;
+      }
+
+      h1 {
+        margin: 0;
+        color: var(--forest);
+        font-size: clamp(2rem, 5vw, 3.4rem);
+        line-height: 1.15;
+      }
+
+      p {
+        margin: 18px auto 0;
+        max-width: 560px;
+        color: var(--muted);
+        font-size: 1.12rem;
+      }
+
+      .actions {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        padding: 12px 22px;
+        border-radius: 999px;
+        font-weight: 900;
+        text-decoration: none;
+      }
+
+      .button-primary {
+        background: var(--forest);
+        color: var(--white);
+      }
+
+      .button-secondary {
+        border: 1px solid var(--line);
+        color: var(--forest);
+        background: var(--white);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="thank-you-card">
+      <p class="eyebrow">הפנייה נשלחה בהצלחה</p>
+      <h1>תודה, הפרטים התקבלו.</h1>
+      <p>נחזור אליכם בהקדם כדי להבין את הצורך, להתאים את הסדנה או התהליך, ולתאם את הצעד הבא.</p>
+      <div class="actions">
+        <a class="button button-primary" href="index.html">חזרה לדף הבית</a>
+        <a class="button button-secondary" href="https://wa.me/972526022321?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA.">שליחת WhatsApp</a>
+      </div>
+    </main>
+  </body>
+</html>

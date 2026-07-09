@@ -1840,7 +1840,7 @@
             </div>
           </div>
           <div class="contact-panel reveal">
-            <form id="lead-form" name="lead-form" method="POST" action="/" accept-charset="UTF-8" data-netlify="true" netlify netlify-honeypot="bot-field">
+            <form id="lead-form" name="lead-form" method="POST" action="/thank-you.html" accept-charset="UTF-8" data-netlify="true" netlify netlify-honeypot="bot-field">
               <input type="hidden" name="form-name" value="lead-form">
               <p class="hidden-field" aria-hidden="true">
                 <label>לא למלא<input name="bot-field" tabindex="-1" autocomplete="off"></label>
@@ -1864,7 +1864,6 @@
               <div class="form-selection" id="form-selection" hidden></div>
               <label>הודעה<textarea name="message"></textarea></label>
               <button class="button button-primary" type="submit">שליחת פרטים</button>
-              <div class="form-note" id="form-note" role="status" aria-live="polite">תודה, הפרטים נקלטו. נחזור אליכם בהקדם.</div>
             </form>
           </div>
         </div>
@@ -2250,47 +2249,6 @@
         setLeadSelection({ workshop: requestedWorkshop, version: requestedVersion });
       }
 
-      const encodeFormData = (formData) => new URLSearchParams(formData).toString();
-
-      const showFormNote = (message, type = "success") => {
-        const formNote = document.querySelector("#form-note");
-        formNote.textContent = message;
-        formNote.classList.toggle("is-error", type === "error");
-        formNote.classList.add("is-visible");
-      };
-
-      document.querySelector("#lead-form").addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const form = event.currentTarget;
-        const submitButton = form.querySelector('[type="submit"]');
-        const formData = new FormData(form);
-
-        submitButton.disabled = true;
-        submitButton.textContent = "שולח...";
-
-        try {
-          const response = await fetch(form.getAttribute("action") || "/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: encodeFormData(formData)
-          });
-
-          if (!response.ok) {
-            throw new Error(`Form submission failed with status ${response.status}`);
-          }
-
-          showFormNote("תודה, הפרטים נשלחו בהצלחה. נחזור אליכם בהקדם.");
-          form.reset();
-          selectionBox.hidden = true;
-          selectionBox.innerHTML = "";
-        } catch (error) {
-          console.error(error);
-          showFormNote("לא הצלחנו לשלוח את הפרטים כרגע. אפשר לנסות שוב או לפנות בוואטסאפ.", "error");
-        } finally {
-          submitButton.disabled = false;
-          submitButton.textContent = "שליחת פרטים";
-        }
-      });
     </script>
     <script src="assets/js/social-links.js"></script>
     <script src="assets/js/accessibility-widget.js"></script>
