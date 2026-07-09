@@ -1840,7 +1840,7 @@
             </div>
           </div>
           <div class="contact-panel reveal">
-            <form id="lead-form" name="lead-form" method="POST" data-netlify="true" netlify netlify-honeypot="bot-field">
+            <form id="lead-form" name="lead-form" method="POST" action="/" accept-charset="UTF-8" data-netlify="true" netlify netlify-honeypot="bot-field">
               <input type="hidden" name="form-name" value="lead-form">
               <p class="hidden-field" aria-hidden="true">
                 <label>לא למלא<input name="bot-field" tabindex="-1" autocomplete="off"></label>
@@ -2269,7 +2269,7 @@
         submitButton.textContent = "שולח...";
 
         try {
-          const response = await fetch("/", {
+          const response = await fetch(form.getAttribute("action") || "/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: encodeFormData(formData)
