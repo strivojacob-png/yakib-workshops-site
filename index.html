@@ -2250,7 +2250,14 @@
         setLeadSelection({ workshop: requestedWorkshop, version: requestedVersion });
       }
 
-      const encodeFormData = (formData) => new URLSearchParams(formData).toString();
+      const encodeFormData = (formData) => {
+        const encodedData = new URLSearchParams();
+        encodedData.set("form-name", "lead-form");
+        formData.forEach((value, key) => {
+          encodedData.set(key, value);
+        });
+        return encodedData.toString();
+      };
 
       const showFormNote = (message, type = "success") => {
         const formNote = document.querySelector("#form-note");
@@ -2268,10 +2275,6 @@
         submitButton.textContent = "שולח...";
 
         try {
-          if (window.location.protocol === "file:") {
-            throw new Error("Netlify Forms works only from the deployed Netlify site, not from file://.");
-          }
-
           const response = await fetch("/", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -2279,7 +2282,8 @@
           });
 
           if (!response.ok) {
-            throw new Error(`Netlify form submission failed with status ${response.status}`);
+            const responseText = await response.text();
+            throw new Error(`Netlify form submission failed with status ${response.status}: ${responseText.slice(0, 160)}`);
           }
 
           showFormNote("תודה, הפרטים נשלחו בהצלחה. נחזור אליכם בהקדם.");
@@ -2288,7 +2292,7 @@
           selectionBox.innerHTML = "";
         } catch (error) {
           console.error(error);
-          showFormNote("לא הצלחנו לשלוח את הפרטים כרגע. יש לנסות מהאתר שפורסם ב-Netlify או לפנות בוואטסאפ.", "error");
+          showFormNote(`לא הצלחנו לשלוח את הפרטים כרגע. ${error.message}`, "error");
         } finally {
           submitButton.disabled = false;
           submitButton.textContent = "שליחת פרטים";
