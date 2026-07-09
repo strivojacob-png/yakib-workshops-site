@@ -64,6 +64,41 @@ window.galleryItems = [
   },
   {
     type: "image",
+    src: "https://res.cloudinary.com/demcs8ho/image/upload/v1783626779/576dfcc4-2e13-43c4-9930-7baea3ea33f2_vsr2cz.png",
+    category: "mevashlim",
+    title: "מבשלים חיבור",
+    alt: "תמונה מסדנת מבשלים חיבור"
+  },
+  {
+    type: "image",
+    src: "https://res.cloudinary.com/demcs8ho/image/upload/v1783626779/49f8f4f7-6913-435b-8132-ff381fa1a701_gicwgt.png",
+    category: "mevashlim",
+    title: "מבשלים חיבור",
+    alt: "תמונה מסדנת מבשלים חיבור"
+  },
+  {
+    type: "image",
+    src: "https://res.cloudinary.com/demcs8ho/image/upload/v1783626779/f83d5541-9b3f-4943-9426-31cc814d96e3_sfhgqi.png",
+    category: "mevashlim",
+    title: "מבשלים חיבור",
+    alt: "תמונה מסדנת מבשלים חיבור"
+  },
+  {
+    type: "image",
+    src: "https://res.cloudinary.com/demcs8ho/image/upload/v1783626779/2d310417-c42a-4076-9eff-d616d45775ec_sztcgk.png",
+    category: "mevashlim",
+    title: "מבשלים חיבור",
+    alt: "תמונה מסדנת מבשלים חיבור"
+  },
+  {
+    type: "image",
+    src: "https://res.cloudinary.com/demcs8ho/image/upload/v1783626778/WhatsApp_Image_2026-07-09_at_18.43.40_wijl9f.jpg",
+    category: "mevashlim",
+    title: "מבשלים חיבור",
+    alt: "תמונה מסדנת מבשלים חיבור"
+  },
+  {
+    type: "image",
     src: "https://res.cloudinary.com/demcs8ho/image/upload/v1783343876/a2350195-df66-475e-aafc-cca52dfb0241-1_ejnxgp.png",
     category: "process",
     title: "תהליכים קבוצתיים",
