@@ -1915,6 +1915,30 @@
 
     <script src="galleryItems.js"></script>
     <script>
+      const SCROLL_RETURN_KEY = "yakiWorkshopScrollPosition";
+      document.querySelectorAll('a[href^="workshops/"]').forEach((link) => {
+        link.addEventListener("click", () => {
+          sessionStorage.setItem(SCROLL_RETURN_KEY, String(window.scrollY));
+        });
+      });
+
+      window.addEventListener("load", () => {
+        const params = new URLSearchParams(window.location.search);
+        if (!params.has("restoreScroll")) return;
+
+        const savedScrollValue = sessionStorage.getItem(SCROLL_RETURN_KEY);
+        const savedScroll = Number(savedScrollValue);
+        if (savedScrollValue !== null && Number.isFinite(savedScroll)) {
+          [0, 100, 350, 800].forEach((delay) => {
+            window.setTimeout(() => {
+              window.scrollTo({ top: savedScroll, behavior: "auto" });
+            }, delay);
+          });
+        }
+        sessionStorage.removeItem(SCROLL_RETURN_KEY);
+        window.history.replaceState({}, "", `${window.location.pathname}${window.location.hash}`);
+      });
+
       const slides = document.querySelectorAll(".hero-slide");
       let activeSlide = 0;
       setInterval(() => {
