@@ -1913,20 +1913,9 @@
 
     <script src="galleryItems.js"></script>
     <script>
-      const SCROLL_RETURN_KEY = "yakiHomepageScrollY";
-      const SCROLL_RETURN_URL_KEY = "yakiHomepageReturnUrl";
-      const SCROLL_RETURN_SOURCE_KEY = "yakiHomepageReturnFromHome";
-      const restoreParams = new URLSearchParams(window.location.search);
-      const shouldRestoreScroll = restoreParams.has("restoreScroll");
-
-      if (shouldRestoreScroll && "scrollRestoration" in window.history) {
-        window.history.scrollRestoration = "manual";
-      }
-
+      const SCROLL_RETURN_KEY = "yakiWorkshopScrollPosition";
       const saveHomepageScroll = () => {
         sessionStorage.setItem(SCROLL_RETURN_KEY, String(window.scrollY));
-        sessionStorage.setItem(SCROLL_RETURN_URL_KEY, window.location.href);
-        sessionStorage.setItem(SCROLL_RETURN_SOURCE_KEY, "1");
       };
 
       const isInternalPageLink = (link) => {
@@ -1944,68 +1933,19 @@
         if (link && isInternalPageLink(link)) {
           saveHomepageScroll();
         }
-      }, true);
-
-      const cleanupRestoreState = () => {
-        sessionStorage.removeItem(SCROLL_RETURN_KEY);
-        sessionStorage.removeItem(SCROLL_RETURN_URL_KEY);
-        sessionStorage.removeItem(SCROLL_RETURN_SOURCE_KEY);
-        window.history.replaceState({}, "", `${window.location.pathname}${window.location.hash}`);
-      };
-
-      const waitForWindowLoad = () => new Promise((resolve) => {
-        if (document.readyState === "complete") {
-          resolve();
-          return;
-        }
-        window.addEventListener("load", resolve, { once: true });
       });
 
-      const waitForImages = () => {
-        const pendingImages = Array.from(document.images).filter((image) => !image.complete);
-        if (!pendingImages.length) return Promise.resolve();
-
-        const imageSettled = pendingImages.map((image) => new Promise((resolve) => {
-          image.addEventListener("load", resolve, { once: true });
-          image.addEventListener("error", resolve, { once: true });
-        }));
-
-        return Promise.race([
-          Promise.all(imageSettled),
-          new Promise((resolve) => window.setTimeout(resolve, 1800))
-        ]);
-      };
-
-      const restoreHomepageScroll = async () => {
-        if (!shouldRestoreScroll) return;
+      window.addEventListener("load", () => {
+        const params = new URLSearchParams(window.location.search);
+        if (!params.has("restoreScroll")) return;
 
         const savedScrollValue = sessionStorage.getItem(SCROLL_RETURN_KEY);
-        const cameFromHome = sessionStorage.getItem(SCROLL_RETURN_SOURCE_KEY) === "1";
         const savedScroll = Number(savedScrollValue);
-
-        if (!cameFromHome || savedScrollValue === null || !Number.isFinite(savedScroll)) {
-          cleanupRestoreState();
-          return;
-        }
-
-        await waitForWindowLoad();
-        await waitForImages();
-
-        const applyScroll = () => window.scrollTo(0, savedScroll);
-        applyScroll();
-        window.requestAnimationFrame(() => {
-          applyScroll();
-          window.requestAnimationFrame(applyScroll);
-        });
-
-        [350, 700].forEach((delay) => {
-          window.setTimeout(applyScroll, delay);
-        });
-
-        window.setTimeout(cleanupRestoreState, 900);
-      };
-
-      restoreHomepageScroll();
+        if (savedScrollValue !== null && Number.isFinite(savedScroll)) {
+          [0, 100, 350, 800, 1400].forEach((delay) => {
+            window.setTimeout(() => {
+              window.scrollTo({ top: savedScroll, behavior: "auto" });
+            }, delay);
           });
         }
         sessionStorage.removeItem(SCROLL_RETURN_KEY);
