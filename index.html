@@ -497,7 +497,9 @@
       .personal-photo {
         min-height: 320px;
         display: grid;
-        place-items: center;
+        justify-items: center;
+        align-content: start;
+        gap: 18px;
         padding: 28px;
         border: 1px solid var(--line);
         border-radius: var(--radius);
@@ -507,6 +509,16 @@
         color: var(--forest);
         box-shadow: 0 16px 42px rgba(38, 63, 49, .1);
         text-align: center;
+      }
+
+      .personal-photo img {
+        width: min(75%, 220px);
+        aspect-ratio: 1;
+        object-fit: cover;
+        object-position: center;
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        box-shadow: 0 12px 28px rgba(38, 63, 49, .12);
       }
 
       .personal-photo span {
@@ -1616,6 +1628,7 @@
           </div>
           <aside class="about-visual reveal" aria-label="תמונה אישית וצוות המנחים">
             <div class="personal-photo">
+              <img src="https://res.cloudinary.com/demcs8ho/image/upload/v1783791460/de236ad5-6297-4078-b40f-c1278442286b_vmd2mg.png" alt="יקי בוזגלו">
               <span>כאן תשתלב תמונה אישית של יקי בהמשך</span>
             </div>
             <div class="team-panel">
