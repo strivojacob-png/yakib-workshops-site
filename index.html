@@ -1914,10 +1914,25 @@
     <script src="galleryItems.js"></script>
     <script>
       const SCROLL_RETURN_KEY = "yakiWorkshopScrollPosition";
-      document.querySelectorAll('a[href^="workshops/"]').forEach((link) => {
-        link.addEventListener("click", () => {
-          sessionStorage.setItem(SCROLL_RETURN_KEY, String(window.scrollY));
-        });
+      const saveHomepageScroll = () => {
+        sessionStorage.setItem(SCROLL_RETURN_KEY, String(window.scrollY));
+      };
+
+      const isInternalPageLink = (link) => {
+        const href = link.getAttribute("href") || "";
+        if (!href || href.startsWith("#")) return false;
+        if (/^(mailto:|tel:|sms:|https?:|javascript:)/i.test(href)) return false;
+        const targetUrl = new URL(href, window.location.href);
+        const currentPath = window.location.pathname.replace(/\/$/, "/index.html");
+        const targetPath = targetUrl.pathname.replace(/\/$/, "/index.html");
+        return targetUrl.origin === window.location.origin && targetPath !== currentPath;
+      };
+
+      document.addEventListener("click", (event) => {
+        const link = event.target.closest("a[href]");
+        if (link && isInternalPageLink(link)) {
+          saveHomepageScroll();
+        }
       });
 
       window.addEventListener("load", () => {
@@ -1927,7 +1942,7 @@
         const savedScrollValue = sessionStorage.getItem(SCROLL_RETURN_KEY);
         const savedScroll = Number(savedScrollValue);
         if (savedScrollValue !== null && Number.isFinite(savedScroll)) {
-          [0, 100, 350, 800].forEach((delay) => {
+          [0, 100, 350, 800, 1400].forEach((delay) => {
             window.setTimeout(() => {
               window.scrollTo({ top: savedScroll, behavior: "auto" });
             }, delay);
@@ -2154,6 +2169,7 @@
           content.innerHTML = `<span>${getGalleryItemLabel(item)}</span><strong>${item.title}</strong>`;
           button.append(content);
           button.addEventListener("click", () => {
+            saveHomepageScroll();
             window.location.href = getFullGalleryUrl(item.category);
           });
           galleryGrid.append(button);
@@ -2191,6 +2207,7 @@
 
       galleryFilters.forEach((filter) => {
         filter.addEventListener("click", () => {
+          saveHomepageScroll();
           window.location.href = getFullGalleryUrl(filter.dataset.galleryFilter);
         });
       });
