@@ -101,23 +101,14 @@
       .eyebrow {
         margin-bottom: 12px;
         color: var(--gold-strong);
-        font-size: clamp(16px, 2vw, 20px);
         font-weight: 900;
-        line-height: 1.25;
-        letter-spacing: 0;
-        text-rendering: geometricPrecision;
-        -webkit-font-smoothing: antialiased;
       }
 
       h1 {
         max-width: 900px;
         color: var(--white);
-        font-weight: 900;
         font-size: clamp(38px, 7vw, 70px);
         line-height: 1.05;
-        letter-spacing: 0;
-        text-rendering: geometricPrecision;
-        -webkit-font-smoothing: antialiased;
       }
 
       .hero-copy p:last-child {
@@ -420,11 +411,10 @@
         .topbar .button { min-height: 42px; padding-inline: 14px; font-size: 14px; }
       }
     </style>
-    <link rel="stylesheet" href="assets/css/accessibility-widget.css">
   </head>
   <body>
     <header class="topbar">
-      <a class="brand" href="index.html?restoreScroll=1">
+      <a class="brand" href="index.html#gallery">
         <img src="assets/images/logo.png" alt="לוגו יקי בוזגלו">
         <span>חזרה לדף הבית</span>
       </a>
@@ -499,7 +489,6 @@
 
     <script src="galleryItems.js"></script>
     <script src="assets/js/social-links.js"></script>
-    <script src="assets/js/accessibility-widget.js"></script>
     <script>
       const galleryItems = window.galleryItems || [];
       const categoryLabels = {

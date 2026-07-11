@@ -497,19 +497,21 @@
       .personal-photo {
         min-height: 320px;
         display: grid;
-        justify-items: center;
-        align-content: center;
-        padding: 0;
+        place-items: center;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background:
+          linear-gradient(135deg, rgba(62, 92, 74, .14), rgba(184, 149, 75, .12)),
+          var(--sand);
+        color: var(--forest);
+        box-shadow: 0 16px 42px rgba(38, 63, 49, .1);
+        text-align: center;
       }
 
-      .personal-photo img {
-        width: min(86%, 260px);
-        aspect-ratio: 1;
-        object-fit: cover;
-        object-position: center;
-        border: 2px solid var(--gold);
-        border-radius: 50%;
-        box-shadow: 0 12px 28px rgba(38, 63, 49, .12);
+      .personal-photo span {
+        max-width: 230px;
+        font-weight: 900;
       }
 
       .team-panel {
@@ -1614,7 +1616,7 @@
           </div>
           <aside class="about-visual reveal" aria-label="תמונה אישית וצוות המנחים">
             <div class="personal-photo">
-              <img src="https://res.cloudinary.com/demcs8ho/image/upload/v1783791460/de236ad5-6297-4078-b40f-c1278442286b_vmd2mg.png" alt="יקי בוזגלו">
+              <span>כאן תשתלב תמונה אישית של יקי בהמשך</span>
             </div>
             <div class="team-panel">
               <h3>צוות המנחים</h3>
@@ -1913,45 +1915,6 @@
 
     <script src="galleryItems.js"></script>
     <script>
-      const SCROLL_RETURN_KEY = "yakiWorkshopScrollPosition";
-      const saveHomepageScroll = () => {
-        sessionStorage.setItem(SCROLL_RETURN_KEY, String(window.scrollY));
-      };
-
-      const isInternalPageLink = (link) => {
-        const href = link.getAttribute("href") || "";
-        if (!href || href.startsWith("#")) return false;
-        if (/^(mailto:|tel:|sms:|https?:|javascript:)/i.test(href)) return false;
-        const targetUrl = new URL(href, window.location.href);
-        const currentPath = window.location.pathname.replace(/\/$/, "/index.html");
-        const targetPath = targetUrl.pathname.replace(/\/$/, "/index.html");
-        return targetUrl.origin === window.location.origin && targetPath !== currentPath;
-      };
-
-      document.addEventListener("click", (event) => {
-        const link = event.target.closest("a[href]");
-        if (link && isInternalPageLink(link)) {
-          saveHomepageScroll();
-        }
-      });
-
-      window.addEventListener("load", () => {
-        const params = new URLSearchParams(window.location.search);
-        if (!params.has("restoreScroll")) return;
-
-        const savedScrollValue = sessionStorage.getItem(SCROLL_RETURN_KEY);
-        const savedScroll = Number(savedScrollValue);
-        if (savedScrollValue !== null && Number.isFinite(savedScroll)) {
-          [0, 100, 350, 800, 1400].forEach((delay) => {
-            window.setTimeout(() => {
-              window.scrollTo({ top: savedScroll, behavior: "auto" });
-            }, delay);
-          });
-        }
-        sessionStorage.removeItem(SCROLL_RETURN_KEY);
-        window.history.replaceState({}, "", `${window.location.pathname}${window.location.hash}`);
-      });
-
       const slides = document.querySelectorAll(".hero-slide");
       let activeSlide = 0;
       setInterval(() => {
@@ -2169,7 +2132,6 @@
           content.innerHTML = `<span>${getGalleryItemLabel(item)}</span><strong>${item.title}</strong>`;
           button.append(content);
           button.addEventListener("click", () => {
-            saveHomepageScroll();
             window.location.href = getFullGalleryUrl(item.category);
           });
           galleryGrid.append(button);
@@ -2207,7 +2169,6 @@
 
       galleryFilters.forEach((filter) => {
         filter.addEventListener("click", () => {
-          saveHomepageScroll();
           window.location.href = getFullGalleryUrl(filter.dataset.galleryFilter);
         });
       });
