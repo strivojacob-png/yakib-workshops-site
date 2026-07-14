@@ -1,128 +1,70 @@
 (function () {
   const STORAGE_KEY = "yaki-home-scroll-position";
-  const SOURCE_KEY = "yaki-home-scroll-source";
   const PENDING_KEY = "yaki-home-scroll-pending";
-  const HOME_PATHS = new Set(["/", "/index.html"]);
-  const RESTORE_DELAYS_MS = [80, 180, 350, 700, 1200, 2000, 3200];
+  const RESTORE_DELAYS_MS = [0, 50, 120, 250, 500, 900, 1500, 2500, 4000];
   let scrollSaveTimer = null;
+  let restoreRun = 0;
+  let restoring = false;
 
-  const normalizePath = (path) => {
-    if (!path) return "/";
-    return path.endsWith("/") ? "/" : path;
-  };
-
-  const isHomepage = () => HOME_PATHS.has(normalizePath(window.location.pathname));
-
-  if (isHomepage() && "scrollRestoration" in window.history) {
+  if ("scrollRestoration" in window.history) {
     window.history.scrollRestoration = "manual";
   }
 
-  const isSamePageHashLink = (url) => (
-    url.origin === window.location.origin &&
-    normalizePath(url.pathname) === normalizePath(window.location.pathname) &&
-    url.hash
-  );
-
-  const shouldStoreScrollForLink = (link) => {
-    if (!isHomepage()) return false;
-    const href = link.getAttribute("href") || "";
-    if (!href || href.startsWith("#")) return false;
-    if (/^(mailto:|tel:|sms:|javascript:)/i.test(href)) return false;
-
-    const targetUrl = new URL(href, window.location.href);
-    if (targetUrl.origin !== window.location.origin) return false;
-    if (isSamePageHashLink(targetUrl)) return false;
-
-    return true;
-  };
-
   const storeHomepageScroll = () => {
+    if (restoring) return;
     sessionStorage.setItem(STORAGE_KEY, String(window.scrollY));
-    sessionStorage.setItem(SOURCE_KEY, "homepage");
-    console.log("[scroll-restoration] saved scroll position", window.scrollY);
   };
-
-  window.saveHomepageScroll = storeHomepageScroll;
 
   const markHomepageExit = () => {
-    if (!isHomepage()) return;
-    storeHomepageScroll();
+    sessionStorage.setItem(STORAGE_KEY, String(window.scrollY));
     sessionStorage.setItem(PENDING_KEY, "1");
   };
 
-  const clearStoredScroll = () => {
-    sessionStorage.removeItem(STORAGE_KEY);
-    sessionStorage.removeItem(SOURCE_KEY);
-    sessionStorage.removeItem(PENDING_KEY);
-  };
-
-  const waitForImages = () => {
-    const images = Array.from(document.images).filter((image) => !image.complete);
-    if (!images.length) return Promise.resolve();
-
-    return Promise.all(images.map((image) => new Promise((resolve) => {
-      image.addEventListener("load", resolve, { once: true });
-      image.addEventListener("error", resolve, { once: true });
-    })));
-  };
-
-  const restoreHomepageScroll = async () => {
-    if (!isHomepage()) return;
-
+  const restoreHomepageScroll = () => {
     const savedPosition = Number(sessionStorage.getItem(STORAGE_KEY));
-    const source = sessionStorage.getItem(SOURCE_KEY);
     const pendingRestore = sessionStorage.getItem(PENDING_KEY) === "1";
 
-    if (source !== "homepage" || !pendingRestore || !Number.isFinite(savedPosition)) return;
+    if (!pendingRestore || !Number.isFinite(savedPosition) || savedPosition < 0) return;
 
-    console.log("[scroll-restoration] detected return to homepage", savedPosition);
+    const currentRun = ++restoreRun;
+    restoring = true;
 
-    await waitForImages();
+    const applyScroll = (isLastAttempt) => {
+      if (currentRun !== restoreRun) return;
 
-    const applyScroll = () => {
       window.scrollTo(0, savedPosition);
-      console.log("[scroll-restoration] restored scroll position", window.scrollY);
+
+      if (isLastAttempt) {
+        restoreRun += 1;
+        restoring = false;
+        sessionStorage.removeItem(PENDING_KEY);
+      }
     };
-    applyScroll();
-    window.requestAnimationFrame(() => {
-      applyScroll();
-      window.requestAnimationFrame(applyScroll);
-    });
+
     RESTORE_DELAYS_MS.forEach((delay, index) => {
       window.setTimeout(() => {
-        applyScroll();
-        if (index === RESTORE_DELAYS_MS.length - 1) {
-          clearStoredScroll();
-        }
+        window.requestAnimationFrame(() => {
+          applyScroll(index === RESTORE_DELAYS_MS.length - 1);
+        });
       }, delay);
     });
   };
 
-  document.addEventListener("click", (event) => {
-    const link = event.target.closest("a[href]");
-    if (link && shouldStoreScrollForLink(link)) {
-      markHomepageExit();
-      return;
-    }
-
-    if (isHomepage() && event.target.closest(".gallery-item, [data-gallery-filter]")) {
-      markHomepageExit();
-    }
-  }, true);
-
   window.addEventListener("scroll", () => {
-    if (!isHomepage()) return;
+    if (restoring) return;
     if (scrollSaveTimer) window.clearTimeout(scrollSaveTimer);
     scrollSaveTimer = window.setTimeout(storeHomepageScroll, 120);
   }, { passive: true });
 
   window.addEventListener("pagehide", markHomepageExit);
-
-  if (document.readyState === "complete") {
-    restoreHomepageScroll();
-  } else {
-    window.addEventListener("load", restoreHomepageScroll, { once: true });
-  }
-
   window.addEventListener("pageshow", restoreHomepageScroll);
+
+  ["wheel", "touchstart", "pointerdown", "keydown"].forEach((eventName) => {
+    window.addEventListener(eventName, (event) => {
+      if (!restoring || !event.isTrusted) return;
+      restoreRun += 1;
+      restoring = false;
+      sessionStorage.removeItem(PENDING_KEY);
+    }, { passive: true });
+  });
 }());
