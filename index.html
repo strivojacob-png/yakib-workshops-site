@@ -541,6 +541,55 @@
         margin-top: 12px;
       }
 
+      .team-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .team-card {
+        overflow: hidden;
+      }
+
+      .team-card-image {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+        background: var(--cream);
+      }
+
+      .team-card-body {
+        padding: 22px;
+      }
+
+      .team-card-role {
+        margin-top: 5px;
+        color: var(--gold-dark);
+        font-size: 15px;
+        font-weight: 900;
+      }
+
+      .team-card-description {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.75;
+      }
+
+      .team-note {
+        max-width: 860px;
+        margin: 20px auto 0;
+        padding: 16px 20px;
+        border: 1px solid rgba(184, 149, 75, .22);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, .72);
+        color: var(--muted);
+        text-align: center;
+        line-height: 1.75;
+      }
+
       .quote-panel,
       .card,
       .contact-panel {
@@ -1354,6 +1403,10 @@
       }
 
       @media (min-width: 640px) {
+        .team-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
         .actions {
           grid-template-columns: 1fr 1fr;
         }
@@ -1399,6 +1452,9 @@
         }
         .doing-grid {
           grid-template-columns: repeat(4, 1fr);
+        }
+        .team-grid {
+          grid-template-columns: repeat(3, 1fr);
         }
         .process-grid {
           grid-template-columns: repeat(4, 1fr);
@@ -1622,6 +1678,43 @@
               <p>אלו אנשים שאני מכיר מקרוב, עובד איתם לאורך השנים ומאמין ביכולות המקצועיות והאנושיות שלהם. בהתאם לאופי הקבוצה ולמטרות התהליך, נבחר צוות ההנחיה המתאים ביותר, מתוך מחויבות להעניק לכל משתתף חוויה משמעותית, מדויקת ומותאמת לצרכיו.</p>
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section class="section" id="team">
+        <div class="section-inner">
+          <div class="section-heading reveal">
+            <p class="eyebrow">האנשים שמאחורי התהליך</p>
+            <h2>הצוות שלנו</h2>
+            <p>צוות מנחים מקצועי ומנוסה שמביא לכל מפגש ידע, רגישות וניסיון בעבודה עם אנשים וקבוצות.</p>
+          </div>
+          <div class="team-grid">
+            <article class="card team-card reveal">
+              <img class="team-card-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f8f6f1'/%3E%3Ccircle cx='400' cy='230' r='105' fill='%23d9d2c2'/%3E%3Cpath d='M190 600c18-140 96-220 210-220s192 80 210 220' fill='%23b8954b' opacity='.38'/%3E%3C/svg%3E" alt="תמונה זמנית של המנחה">
+              <div class="team-card-body">
+                <h3>שם המנחה</h3>
+                <p class="team-card-role">תפקיד או תחום התמחות</p>
+                <p class="team-card-description">כאן יופיע תיאור קצר של הניסיון המקצועי, תחומי ההתמחות והערך שהמנחה מביא לעבודה עם הקבוצה.</p>
+              </div>
+            </article>
+            <article class="card team-card reveal">
+              <img class="team-card-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f8f6f1'/%3E%3Ccircle cx='400' cy='230' r='105' fill='%23d9d2c2'/%3E%3Cpath d='M190 600c18-140 96-220 210-220s192 80 210 220' fill='%23b8954b' opacity='.38'/%3E%3C/svg%3E" alt="תמונה זמנית של המנחה">
+              <div class="team-card-body">
+                <h3>שם המנחה</h3>
+                <p class="team-card-role">תפקיד או תחום התמחות</p>
+                <p class="team-card-description">כאן יופיע תיאור קצר של הניסיון המקצועי, תחומי ההתמחות והערך שהמנחה מביא לעבודה עם הקבוצה.</p>
+              </div>
+            </article>
+            <article class="card team-card reveal">
+              <img class="team-card-image" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23f8f6f1'/%3E%3Ccircle cx='400' cy='230' r='105' fill='%23d9d2c2'/%3E%3Cpath d='M190 600c18-140 96-220 210-220s192 80 210 220' fill='%23b8954b' opacity='.38'/%3E%3C/svg%3E" alt="תמונה זמנית של המנחה">
+              <div class="team-card-body">
+                <h3>שם המנחה</h3>
+                <p class="team-card-role">תפקיד או תחום התמחות</p>
+                <p class="team-card-description">כאן יופיע תיאור קצר של הניסיון המקצועי, תחומי ההתמחות והערך שהמנחה מביא לעבודה עם הקבוצה.</p>
+              </div>
+            </article>
+          </div>
+          <p class="team-note reveal">הרכב הצוות משתנה בהתאם לסוג הסדנה, לאופי התהליך ולהיקף הפעילות, כדי להתאים לכל קבוצה את המנחים הנכונים ביותר עבורה.</p>
         </div>
       </section>
 
