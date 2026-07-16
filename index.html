@@ -602,6 +602,10 @@
         object-position: center 20%;
       }
 
+      .team-card-image-israel {
+        object-position: center 28%;
+      }
+
       .team-card-summary {
         margin-top: 14px;
         color: var(--muted);
@@ -1568,7 +1572,7 @@
           grid-template-columns: repeat(4, 1fr);
         }
         .team-grid {
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(2, 1fr);
         }
         .process-grid {
           grid-template-columns: repeat(4, 1fr);
@@ -1846,6 +1850,15 @@
                 <p class="team-card-description">כאן יופיע תיאור קצר של הניסיון המקצועי, תחומי ההתמחות והערך שהמנחה מביא לעבודה עם הקבוצה.</p>
               </div>
             </article>
+            <article class="card team-card reveal">
+              <img class="team-card-image team-card-image-israel" src="assets/images/team-israel.jpg" alt="ישראל">
+              <div class="team-card-body">
+                <h3>ישראל</h3>
+                <p class="team-card-role">מוביל את Strivo, סטודיו בוטיק ל־AI ומערכות מידע</p>
+                <p class="team-card-summary">ישראל מוביל את Strivo, סטודיו בוטיק ל־AI ומערכות מידע, ומלווה צוותים וארגונים בתהליכי חדשנות — משלב זיהוי הצורך ועד ליצירת פתרון מעשי שעובד בשטח.</p>
+                <button class="team-read-more" type="button" data-team-profile-open="team-profile-israel">קראו עוד</button>
+              </div>
+            </article>
           </div>
           <p class="team-note reveal">הרכב הצוות משתנה בהתאם לסוג הסדנה, לאופי התהליך ולהיקף הפעילות, כדי להתאים לכל קבוצה את המנחים הנכונים ביותר עבורה.</p>
         </div>
@@ -1857,6 +1870,15 @@
           <h3 id="team-profile-yifat-title">יפעת דננברג</h3>
           <p class="team-card-role">מאמנת, מנחת קבוצות ומרצה<br>מטפלת דיאדית, מטפלת CBT ומורה ליוגה<br>בעלת תואר ראשון בחינוך מיוחד ותואר שני ביעוץ חינוכי</p>
           <p class="team-profile-full-text">יש לי תשוקה ללימודים וככול שאני לומדת יותר אני מבינה כמה אני לא יודעת.<br><br>מאמינה כמו שאת.ה ככה זה טוב- לא באתי לתקן , מניסיוני, הרבה פעמים השינוי הגדול מגיע פשוט מתוך השיקוף- דרך האמונה שלי בך אדם שאני פוגשת את.ה לומד להאמין בעצמך מחדש- יחד מגיעים לתוצאות מדהימות, ומממשים את היכולות האישיות.<br>את.ה לא לבד!<br>אני איתך 🙂<br>מלווה, תומכת, מכוונת. אנחנו מתקדמים בקצב שנכון עבורך ועובדים עם כלים שמותאמים לך.</p>
+        </div>
+      </dialog>
+
+      <dialog class="team-profile-dialog" id="team-profile-israel" aria-labelledby="team-profile-israel-title">
+        <div class="team-profile-dialog-content">
+          <button class="team-profile-close" type="button" data-team-profile-close aria-label="סגירת הפרופיל">×</button>
+          <h3 id="team-profile-israel-title">ישראל</h3>
+          <p class="team-card-role">מוביל את Strivo, סטודיו בוטיק ל־AI ומערכות מידע</p>
+          <p class="team-profile-full-text">ישראל מוביל את Strivo, סטודיו בוטיק ל־AI ומערכות מידע, ומלווה צוותים וארגונים בתהליכי חדשנות — משלב זיהוי הצורך ועד ליצירת פתרון מעשי שעובד בשטח.<br><br>בשנים האחרונות ישראל פועל גם בעולם החינוך הבלתי פורמלי, ומנגיש לצוותים ולבני נוער את תחום הבינה המלאכותית בדרך פשוטה, חווייתית ומעשית. הוא מעביר סדנאות והכשרות המשלבות התנסות בכלי AI, חשיבה יצירתית, פתרון בעיות ועבודה משותפת.<br><br>הגישה שלו מבוססת על פחות תיאוריה ויותר התנסות: כלים שאפשר להשתמש בהם כבר ביום שאחרי, תוך התאמה לגיל המשתתפים, לצורכי הקבוצה ולמטרות התהליך.</p>
         </div>
       </dialog>
 
@@ -2485,20 +2507,21 @@
         setLeadSelection({ workshop: requestedWorkshop, version: requestedVersion });
       }
 
-      const teamProfileDialog = document.querySelector("#team-profile-yifat");
-      const teamProfileOpenButton = document.querySelector('[data-team-profile-open="team-profile-yifat"]');
-      const teamProfileCloseButton = teamProfileDialog.querySelector("[data-team-profile-close]");
+      document.querySelectorAll("[data-team-profile-open]").forEach((button) => {
+        const dialog = document.querySelector(`#${button.dataset.teamProfileOpen}`);
+        const closeButton = dialog.querySelector("[data-team-profile-close]");
 
-      teamProfileOpenButton.addEventListener("click", () => {
-        teamProfileDialog.showModal();
-      });
+        button.addEventListener("click", () => {
+          dialog.showModal();
+        });
 
-      teamProfileCloseButton.addEventListener("click", () => {
-        teamProfileDialog.close();
-      });
+        closeButton.addEventListener("click", () => {
+          dialog.close();
+        });
 
-      teamProfileDialog.addEventListener("click", (event) => {
-        if (event.target === teamProfileDialog) teamProfileDialog.close();
+        dialog.addEventListener("click", (event) => {
+          if (event.target === dialog) dialog.close();
+        });
       });
 
     </script>
