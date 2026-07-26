@@ -2087,15 +2087,16 @@
             <p>אפשר לפנות לשיחת התאמה קצרה, לבקש הצעת מחיר או להתייעץ על תהליך מתאים.</p>
             <div class="contact-list">
               <a href="https://wa.me/972526022321?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA." data-contact-link="whatsapp"><span>וואטסאפ</span><span>052-602-2321</span></a>
-              <a href="mailto:yakib.officiai@gmail.com" data-contact-link="email"><span>מייל</span><span>yakib.officiai@gmail.com</span></a>
             </div>
           </div>
           <div class="contact-panel reveal">
-            <form id="lead-form" name="lead-form" method="POST" action="thank-you.html" accept-charset="UTF-8" data-netlify="true" netlify netlify-honeypot="bot-field">
-              <input type="hidden" name="form-name" value="lead-form">
-              <input type="hidden" name="subject" value="פנייה חדשה מהאתר של יקי בוזגלו">
+            <form id="lead-form" name="lead-form" method="POST" action="https://formsubmit.co/ajax/yakib.officiai@gmail.com" accept-charset="UTF-8">
+              <input type="hidden" name="_subject" value="פנייה חדשה מהאתר של יקי בוזגלו">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_url" value="https://yakib.com/">
               <p class="hidden-field" aria-hidden="true">
-                <label>לא למלא<input name="bot-field" tabindex="-1" autocomplete="off"></label>
+                <label>לא למלא<input name="_honey" tabindex="-1" autocomplete="off"></label>
               </p>
               <label>שם מלא<input name="name" autocomplete="name" required></label>
               <label>ארגון<input name="organization" autocomplete="organization"></label>
@@ -2116,6 +2117,7 @@
               <div class="form-selection" id="form-selection" hidden></div>
               <label>הודעה<textarea name="message"></textarea></label>
               <button class="button button-primary" type="submit">שליחת פרטים</button>
+              <p class="form-note" id="lead-form-status" role="status" aria-live="polite"></p>
             </form>
           </div>
         </div>
@@ -2502,6 +2504,42 @@
       if (requestedWorkshop || requestedVersion) {
         setLeadSelection({ workshop: requestedWorkshop, version: requestedVersion });
       }
+
+      const leadFormStatus = document.querySelector("#lead-form-status");
+      const leadFormSubmit = leadForm.querySelector('[type="submit"]');
+      const leadFormSubmitLabel = leadFormSubmit.textContent;
+
+      leadForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        leadFormStatus.classList.remove("is-visible", "is-error");
+        leadFormSubmit.disabled = true;
+        leadFormSubmit.textContent = "שולח...";
+
+        try {
+          const response = await fetch(leadForm.action, {
+            method: "POST",
+            headers: { Accept: "application/json" },
+            body: new FormData(leadForm)
+          });
+          const result = await response.json();
+          const accepted = result.success === true || result.success === "true";
+
+          if (!response.ok || !accepted) {
+            throw new Error(result.message || "השליחה לא התקבלה");
+          }
+
+          leadFormStatus.textContent = "הפרטים נשלחו בהצלחה. נחזור אליכם בהקדם.";
+          leadFormStatus.classList.add("is-visible");
+          leadForm.reset();
+          selectionBox.hidden = true;
+        } catch (error) {
+          leadFormStatus.textContent = "השליחה לא הושלמה. נסו שוב או פנו אלינו בוואטסאפ.";
+          leadFormStatus.classList.add("is-visible", "is-error");
+        } finally {
+          leadFormSubmit.disabled = false;
+          leadFormSubmit.textContent = leadFormSubmitLabel;
+        }
+      });
 
       document.querySelectorAll("[data-team-profile-open]").forEach((button) => {
         const dialog = document.querySelector(`#${button.dataset.teamProfileOpen}`);
