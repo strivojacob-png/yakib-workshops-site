@@ -2401,7 +2401,6 @@
           content.innerHTML = `<span>${getGalleryItemLabel(item)}</span><strong>${item.title}</strong>`;
           button.append(content);
           button.addEventListener("click", () => {
-            saveHomepageScroll();
             window.location.href = getFullGalleryUrl(item.category);
           });
           galleryGrid.append(button);
@@ -2439,7 +2438,6 @@
 
       galleryFilters.forEach((filter) => {
         filter.addEventListener("click", () => {
-          saveHomepageScroll();
           window.location.href = getFullGalleryUrl(filter.dataset.galleryFilter);
         });
       });
