@@ -2530,6 +2530,7 @@
             body: new FormData(leadForm)
           });
           const result = await response.json();
+          leadFormStatus.dataset.serviceResponse = JSON.stringify(result);
           const accepted = result.success === true || result.success === "true";
 
           if (!response.ok || !accepted) {
