@@ -13,57 +13,118 @@
     <title>סדנה תהליכית מותאמת לקבוצה | יקי בוזגלו</title>
     <link rel="stylesheet" href="workshop.css">
     <style>
-      .derech-section {
-        padding-top: clamp(34px, 5vw, 58px);
+      /* Local preview only: compact, consistent spacing for this page. */
+      .tahalichit-preview .section {
+        padding-block: clamp(20px, 2.6vw, 30px);
       }
 
-      .derech-card h2 {
-        margin-bottom: 8px;
+      .tahalichit-preview .mevashlim-facts-section {
+        padding-top: 0;
+        padding-bottom: clamp(20px, 2.6vw, 30px);
       }
 
-      .derech-card h3 {
-        margin-top: 18px;
-        margin-bottom: 6px;
+      .tahalichit-preview .section-heading {
+        margin-bottom: 10px;
       }
 
-      .derech-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 18px;
+      .tahalichit-preview .mevashlim-story-grid,
+      .tahalichit-preview .mevashlim-routes-grid,
+      .tahalichit-preview .mevashlim-facts {
+        gap: 10px;
+      }
+
+      .tahalichit-preview .mevashlim-story-card,
+      .tahalichit-preview .mevashlim-route-card {
+        padding: clamp(18px, 2.2vw, 24px);
+      }
+
+      .tahalichit-preview .mevashlim-story-card p + p {
+        margin-top: 12px !important;
+      }
+
+      .tahalichit-preview .mevashlim-audience-note {
+        margin-top: 0;
+      }
+
+      .tahalichit-preview .mevashlim-final-cta {
+        gap: 14px;
+        padding-block: clamp(26px, 3.5vw, 40px);
+      }
+
+      @media (max-width: 719px) {
+        .tahalichit-preview .section {
+          padding-block: 18px;
+        }
+
+        .tahalichit-preview .mevashlim-facts-section {
+          padding-bottom: 18px;
+        }
+
+        .tahalichit-preview .section-heading {
+          margin-bottom: 9px;
+        }
       }
     </style>
   </head>
-  <body>
+  <body class="mevashlim-page tahalichit-preview">
     <header class="topbar">
       <a class="brand" href="../index.html"><img src="../assets/images/logo.png" alt="לוגו יקי בוזגלו"><span>חזרה לדף הבית</span></a>
-      <a class="button" href="mailto:yakib.officiai@gmail.com?subject=בקשה להצעת מחיר">לפרטים נוספים</a>
+      <a class="button" href="https://wa.me/972526022321?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA." data-contact-link="whatsapp">WhatsApp</a>
     </header>
     <main>
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow" style="font-size: clamp(17px, 2.2vw, 22px);">תהליך לקבוצה</p>
-          <h1>ד.ר.ך</h1>
-          <p>תהליך קבוצתי המשלב חוויה, שיח ועשייה, במטרה לחזק את תחושת השייכות, להעצים כל משתתף, לפתח יכולות אישיות ולבנות קבוצה חזקה ומגובשת.</p>
+      <section class="mevashlim-hero"><div class="mevashlim-hero-inner"><div class="mevashlim-hero-copy">
+        <p class="eyebrow">דיאלוג, רצון, כיוון</p><h1>ד.ר.ך</h1>
+        <p class="mevashlim-lead">תהליך קבוצתי מותאם אישית, המשלב חוויה, שיח ועשייה ונבנה בהתאם לצרכים, למטרות ולמאפיינים של כל קבוצה.</p>
+        <a class="button mevashlim-primary-button" href="https://wa.me/972526022321?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA." data-contact-link="whatsapp">לפרטים נוספים</a>
+      </div></div></section>
+
+      <section class="section mevashlim-facts-section" aria-label="פרטי התהליך בקצרה"><div class="mevashlim-facts">
+        <article class="mevashlim-fact-card"><span class="mevashlim-icon" aria-hidden="true">👥</span><h2>למי התהליך מתאים</h2><p>לבתי ספר, מחלקות נוער, קבוצות חינוכיות, צוותי הדרכה וצוותים בוגרים. התהליך מותאם למסגרת, למאפייני המשתתפים ולמטרות שנקבעות יחד עם הגוף המזמין.</p></article>
+        <article class="mevashlim-fact-card"><span class="mevashlim-icon" aria-hidden="true">🎯</span><h2>מטרות התהליך</h2><p>מטרות התהליך נבנות באופן אישי לכל קבוצה לאחר היכרות ואפיון הצרכים. בהתאם לכך נקבעים התכנים, הפעילויות, מבנה המפגשים והדגשים לאורך הדרך.</p></article>
+        <article class="mevashlim-fact-card"><span class="mevashlim-icon" aria-hidden="true">⏱</span><h2>משך התהליך</h2><p>מספר המפגשים נקבע בהתאם לצורך. התוכנית יכולה להיות תהליך ממוקד של מספר מפגשים או תהליך מתמשך לאורך השנה.</p></article>
+        <article class="mevashlim-fact-card"><span class="mevashlim-icon" aria-hidden="true">↔</span><h2>גודל הקבוצה</h2><p><strong>עד 25 משתתפים בכל קבוצת פעילות.</strong></p><p>בקבוצות גדולות יותר המשתתפים מתחלקים למספר קבוצות פעילות, בהתאם לצורך ולמבנה התהליך.</p></article>
+      </div></section>
+
+      <section class="section mevashlim-story-section"><div class="mevashlim-section-inner">
+        <div class="section-heading mevashlim-heading"><h2>תהליך שנבנה לאורך הדרך</h2></div>
+        <div class="mevashlim-story-grid">
+          <article class="mevashlim-story-card mevashlim-story-card-featured"><p>ד.ר.ך הוא תהליך קבוצתי מתמשך, המאפשר להכיר את הקבוצה לעומק ולעבוד איתה לאורך זמן. בניגוד לסדנה חד־פעמית, כל מפגש מתחבר למפגשים שקדמו לו ומאפשר להמשיך, להעמיק ולהתייחס למה שעולה מתוך הקבוצה.</p></article>
+          <article class="mevashlim-story-card"><p>התהליך מתחיל בהיכרות ובאפיון משותף עם הגוף המזמין. יחד מגדירים את הצורך ואת מטרות העבודה, ובהתאם לכך בונים את מספר המפגשים, התכנים, אופי הפעילות והמרחבים שבהם היא תתקיים.</p></article>
+          <article class="mevashlim-story-card"><p>במהלך המפגשים משלבים פעילות חווייתית, משימות קבוצתיות, שיח, אתגר ועיבוד. הפעילויות אינן עומדות בפני עצמן, אלא משמשות כלי להתבוננות, ללמידה ולהתקדמות בהתאם למטרות שנקבעו.</p></article>
+          <article class="mevashlim-story-card mevashlim-story-card-accent"><p>התוכנית נשארת גמישה גם לאחר תחילת התהליך. התכנים והדגשים משתנים בהתאם למה שעולה במפגשים, להתקדמות הקבוצה ולצרכים שמתגלים לאורך הדרך. במקביל מתקיים קשר שוטף עם הצוות החינוכי או עם הגוף המזמין, הכולל עדכונים, סיכומי מפגשים והתאמות להמשך.</p></article>
         </div>
-      </section>
-      <section class="section derech-section">
-        <div class="grid">
-          <article class="card wide derech-card">
-            <h2>דרך קבוצה</h2>
-            <p>"דרך קבוצה" היא תוכנית תהליכית המבוססת על היכרות, איפיון והתאמה אישית, מתוך הבנה שכל קבוצה היא עולם בפני עצמו. התהליך אינו מבוסס על תכנים קבועים מראש, אלא נבנה בהתאם למטרות, לאתגרים ולמאפייני הקבוצה, כדי לייצר חוויה משמעותית ורלוונטית לכל המשתתפים.</p>
-            <h3>שני מסלולים תהליכיים</h3>
-            <p>התוכנית מוצעת בשני מסלולים תהליכיים: מסלול של עד 10 מפגשים, המתאים לקבוצות המעוניינות בתהליך ממוקד לחיזוק הדינמיקה הקבוצתית וההתפתחות האישית, ומסלול של מעל 10 מפגשים, המאפשר עבודה מעמיקה יותר, ליווי ארוך טווח והתמודדות עם תהליכים קבוצתיים מורכבים לאורך זמן.</p>
-            <h3>מה קורה במהלך המפגשים</h3>
-            <p>במהלך המפגשים משלבים פעילות חווייתית, משימות קבוצתיות, שיח, אתגר ועיבוד, במטרה לחזק את תחושת השייכות, התקשורת, שיתוף הפעולה והאחריות בתוך הקבוצה. לצד העבודה הקבוצתית, מושם דגש גם על ההתפתחות האישית של כל משתתף, חיזוק תחושת המסוגלות, הביטחון העצמי והיכולת לקחת חלק משמעותי בתוך הקבוצה.</p>
-            <h3>מטרה תהליכית</h3>
-            <p>מטרת התהליך אינה ליצור חוויה חד־פעמית, אלא להוביל שינוי שנבנה לאורך זמן. כל תוכנית מתקדמת בקצב המתאים לקבוצה, תוך בחינה מתמדת של הצרכים והתאמת התהליך לאורך הדרך, כדי לייצר שינוי אמיתי ומשמעותי שנשאר גם לאחר סיום המפגשים.</p>
-            <div class="derech-actions">
-              <a class="button" href="https://wa.me/972526022321?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA." data-contact-link="whatsapp">שליחת הודעת WhatsApp</a>
-              <a class="button" href="mailto:yakib.officiai@gmail.com" data-contact-link="email">שליחת מייל</a>
-            </div>
+      </div></section>
+
+      <section class="section mevashlim-audience-section"><div class="mevashlim-section-inner">
+        <div class="section-heading mevashlim-heading"><h2>התוכן והחוויה במפגשים</h2></div>
+        <div class="mevashlim-story-grid">
+          <article class="mevashlim-story-card mevashlim-story-card-featured">
+            <p>המפגשים משלבים פעילויות חווייתיות, משימות קבוצתיות, יציאה לשטח, דילמות, שיח, יצירה ועיבוד משותף. המשתתפים אינם רק מדברים על הנושאים, אלא פוגשים אותם דרך התנסות ועשייה.</p>
+            <p style="margin-top: 12px;">בהתאם לתוכן המפגש, העבודה יכולה לעסוק בתקשורת בתוך הקבוצה, תפקידים קבוצתיים, שייכות, אמון, התמודדות עם מחלוקות, קבלת החלטות, אחריות ומסוגלות אישית וקבוצתית. בסיום הפעילות מחברים בין החוויה לבין ההתנהלות היומיומית של המשתתפים בתוך הקבוצה.</p>
           </article>
         </div>
+      </div></section>
+
+      <section class="section mevashlim-routes-section"><div class="mevashlim-section-inner">
+        <div class="section-heading mevashlim-heading"><h2>מקום הפעילות</h2></div>
+        <div class="mevashlim-routes-grid">
+          <article class="mevashlim-route-card"><span class="mevashlim-route-number">01</span><h3>חדר או מבנה</h3><p>המפגשים יכולים להתקיים בחדר או במבנה. בחירת המרחב נעשית בהתאם לאופי הפעילות ולמטרות שרוצים לקדם עם הקבוצה.</p></article>
+          <article class="mevashlim-route-card mevashlim-route-card-featured"><span class="mevashlim-route-number">02</span><h3>שטח פתוח</h3><p>המפגשים יכולים להתקיים בשטח פתוח. בחירת המרחב נעשית בהתאם לאופי הפעילות ולמטרות שרוצים לקדם עם הקבוצה.</p></article>
+        </div>
+        <p class="mevashlim-audience-note">לאורך התהליך ניתן לשלב בין מרחבים שונים, כאשר כל מפגש נבנה בהתאם לתוכן ולצורך.</p>
+      </div></section>
+
+      <section class="section mevashlim-outcomes-section"><div class="mevashlim-section-inner">
+        <div class="section-heading mevashlim-heading"><h2>תהליך שמותאם לקבוצה</h2></div>
+        <article class="mevashlim-story-card mevashlim-story-card-featured">
+          <p>התהליך מתחיל בהיכרות ובאפיון משותף עם הצוות החינוכי או עם הגוף המזמין. בשלב זה לומדים להכיר את הקבוצה, מבינים את הצרכים והאתגרים שלה ומגדירים יחד את מטרות העבודה. בהתאם לכך נקבעים מספר המפגשים, משך כל מפגש, התכנים, אופי הפעילות, מקום המפגשים וצוות ההנחיה.</p>
+          <p style="margin-top: 12px;">ההתאמה אינה מסתיימת בתחילת הדרך. לאורך התהליך מתקיים קשר שוטף עם הצוות, הכולל עדכונים, סיכומי מפגשים ובחינה משותפת של התקדמות הקבוצה. המידע שעולה מהמפגשים מאפשר לדייק את התכנים, לשנות דגשים ולבחור את הפעילויות המתאימות להמשך.</p>
+          <p style="margin-top: 12px;">כך התוכנית נשארת גמישה ומתפתחת יחד עם הקבוצה. כל מפגש נבנה מתוך המטרות שהוגדרו, מתוך מה שהתרחש במפגשים הקודמים ומתוך הצרכים שעולים בשטח.</p>
+        </article>
+      </div></section>
+
+      <section class="mevashlim-final-cta"><div><p class="eyebrow">מתחילים בדרך שמתאימה לקבוצה</p><h2>בואו נבנה את התהליך שמתאים לקבוצה שלכם</h2><p>ספרו לנו על הקבוצה, הצורך והמטרות, ונבנה יחד תהליך מדויק, גמיש ומשמעותי.</p></div>
+        <div class="mevashlim-final-actions"><a class="button mevashlim-primary-button" href="https://wa.me/972526022321?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA." data-contact-link="whatsapp">בואו נתאים יחד את התהליך לקבוצה שלכם</a><a class="mevashlim-text-link" href="tel:+972526022321">052-602-2321</a></div>
       </section>
     </main>
     <footer class="site-footer">
