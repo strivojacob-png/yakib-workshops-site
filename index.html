@@ -48,7 +48,8 @@
       h1, h2, h3 { margin: 0; letter-spacing: 0; }
       p { margin: 0; color: var(--muted); }
 
-      #process {
+      #process,
+      #testimonials {
         scroll-margin-top: 82px;
       }
 
@@ -272,17 +273,39 @@
         padding: 2px 14px 10px;
       }
 
-      .mobile-dropdown-title {
+      html body .mobile-panel .mobile-dropdown-title {
         margin-top: 6px;
-        color: var(--gold-strong);
+        color: var(--forest) !important;
         font-size: 13px;
         font-weight: 900;
       }
 
       .mobile-panel .mobile-dropdown-content a {
         padding: 9px 12px;
-        color: var(--muted);
+        color: var(--forest) !important;
         font-size: 14px;
+      }
+
+      html body .mobile-panel a,
+      .mobile-panel summary {
+        color: var(--forest) !important;
+      }
+
+      .mobile-panel a:hover,
+      .mobile-panel a:focus-visible,
+      .mobile-panel a:active,
+      .mobile-panel summary:hover,
+      .mobile-panel summary:focus-visible,
+      .mobile-panel summary:active,
+      .mobile-panel details[open] summary {
+        color: var(--forest) !important;
+        background: rgba(62, 92, 74, .12);
+      }
+
+      .mobile-panel a:focus-visible,
+      .mobile-panel summary:focus-visible {
+        outline: 2px solid var(--gold-strong);
+        outline-offset: 2px;
       }
 
       .hero {
@@ -1597,7 +1620,8 @@
       }
 
       @media (max-width: 520px) {
-        #process {
+        #process,
+        #testimonials {
           scroll-margin-top: 70px;
         }
 
@@ -1762,7 +1786,6 @@
             <div class="dropdown-group">
               <span class="dropdown-title">תוכניות ליווי, פיתוח והטמעה</span>
               <a href="workshops/sadna-tahalichit.html" role="menuitem">ד.ר.ך</a>
-              <a href="workshops/sadna-tahalichit.html" role="menuitem">סדנה תהליכית</a>
               <a href="workshops/small-group.html" role="menuitem">מפגשים אישיים בקבוצה קטנה</a>
               <a href="workshops/ai-education.html" role="menuitem">הכשרת AI לחינוך</a>
             </div>
@@ -1787,7 +1810,6 @@
           <a href="workshops/etgar-mehaber.html">אתגר מחבר</a>
           <span class="mobile-dropdown-title">תוכניות ליווי, פיתוח והטמעה</span>
           <a href="workshops/sadna-tahalichit.html">ד.ר.ך</a>
-          <a href="workshops/sadna-tahalichit.html">סדנה תהליכית</a>
           <a href="workshops/small-group.html">מפגשים אישיים בקבוצה קטנה</a>
           <a href="workshops/ai-education.html">הכשרת AI לחינוך</a>
         </div>
@@ -2056,8 +2078,10 @@
               <button class="gallery-filter" type="button" data-gallery-filter="mevashlim">מבשלים חיבור</button>
               <button class="gallery-filter" type="button" data-gallery-filter="etgar">אתגר מחבר</button>
               <button class="gallery-filter" type="button" data-gallery-filter="process">תהליכים קבוצתיים</button>
+              <!-- Temporarily hidden until these gallery categories contain published items.
               <button class="gallery-filter" type="button" data-gallery-filter="schools">בתי ספר וצוותי חינוך</button>
               <button class="gallery-filter" type="button" data-gallery-filter="videos">סרטונים</button>
+              -->
             </div>
             <div class="gallery-grid" id="gallery-grid" aria-live="polite"></div>
             <div class="gallery-empty" id="gallery-empty">בקטגוריה הזו יתווספו פריטים בהמשך.</div>

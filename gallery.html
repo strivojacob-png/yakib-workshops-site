@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="גלריית תמונות וסרטונים מהסדנאות והתהליכים של יקי בוזגלו.">
     <title>גלריה מלאה | יקי בוזגלו</title>
+    <link rel="stylesheet" href="assets/css/accessibility-widget.css">
     <style>
       :root {
         --forest: #263f31;
@@ -444,8 +445,10 @@
             <a class="gallery-filter" href="gallery.html?category=mevashlim" data-gallery-filter="mevashlim">מבשלים חיבור</a>
             <a class="gallery-filter" href="gallery.html?category=etgar" data-gallery-filter="etgar">אתגר מחבר</a>
             <a class="gallery-filter" href="gallery.html?category=process" data-gallery-filter="process">תהליכים קבוצתיים</a>
+            <!-- Temporarily hidden until these gallery categories contain published items.
             <a class="gallery-filter" href="gallery.html?category=schools" data-gallery-filter="schools">בתי ספר וצוותי חינוך</a>
             <a class="gallery-filter" href="gallery.html?category=videos" data-gallery-filter="videos">סרטונים</a>
+            -->
           </nav>
           <div class="gallery-grid" id="full-gallery-grid" aria-live="polite"></div>
           <div class="gallery-empty" id="full-gallery-empty" hidden>בקטגוריה הזו יתווספו פריטים בהמשך.</div>
@@ -646,5 +649,6 @@
 
       renderGallery();
     </script>
+    <script src="assets/js/accessibility-widget.js"></script>
   </body>
 </html>

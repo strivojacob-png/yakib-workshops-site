@@ -187,5 +187,17 @@ html.accessibility-dark-mode body :where(p, li, span, h1, h2, h3, h4, h5, h6, la
 
   .accessibility-panel {
     bottom: 62px;
+    box-sizing: border-box;
+    max-height: min(34vh, 310px);
+    max-height: min(34dvh, 310px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}
+
+@media (max-width: 400px) {
+  body:has(> main#home) .accessibility-panel {
+    max-height: min(53vh, 450px);
+    max-height: min(53dvh, 450px);
   }
 }

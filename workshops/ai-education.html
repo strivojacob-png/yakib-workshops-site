@@ -2,126 +2,187 @@
 <html lang="he" dir="rtl">
   <head>
     <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "xnafvwif09");
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "xnafvwif09");
     </script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>הכשרת AI לחינוך | יקי בוזגלו</title>
+    <title>AI בחינוך הבלתי פורמלי | יקי בוזגלו</title>
     <link rel="stylesheet" href="workshop.css">
+    <link rel="stylesheet" href="../assets/css/accessibility-widget.css">
     <style>
-      .audience-card {
-        width: 100%;
-        text-align: right;
+      .ai-page .section {
+        padding-block: clamp(24px, 3.2vw, 38px);
       }
 
-      .audience-card[aria-pressed="true"] {
-        border-color: rgba(184, 149, 75, .65);
-        box-shadow: 0 16px 42px rgba(38, 63, 49, .14);
+      .ai-page .section-heading {
+        margin-bottom: 12px;
       }
 
-      .audience-panel[hidden] {
-        display: none;
+      .ai-page .mevashlim-story-card p + p,
+      .ai-page .mevashlim-route-card p + p,
+      .ai-page .mevashlim-custom-card p + p {
+        margin-top: 12px;
+      }
+
+      .ai-page .ai-options-grid {
+        display: grid;
+        gap: 10px;
+      }
+
+      .ai-page .ai-option-card {
+        padding: clamp(20px, 3vw, 30px);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, .96);
+        box-shadow: 0 14px 36px rgba(38, 63, 49, .08);
+      }
+
+      .ai-page .ai-option-card h3 {
+        margin-bottom: 8px;
+        color: var(--forest);
+        font-size: clamp(24px, 3.5vw, 32px);
+      }
+
+      @media (min-width: 720px) {
+        .ai-page .ai-options-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 719px) {
+        .ai-page .section {
+          padding-block: 20px;
+        }
       }
     </style>
   </head>
-  <body>
+  <body class="mevashlim-page ai-page">
     <header class="topbar">
       <a class="brand" href="../index.html"><img src="../assets/images/logo.png" alt="לוגו יקי בוזגלו"><span>חזרה לדף הבית</span></a>
-      <a class="button" href="https://wa.me/972526022321">לפרטים נוספים</a>
+      <a class="button" href="https://wa.me/972526022321">WhatsApp</a>
     </header>
+
     <main>
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="eyebrow">הכשרות מקצועיות מותאמות לעולם החינוך</p>
-          <h1>AI לחינוך</h1>
-          <p>מגוון הכשרות מעשיות המותאמות לצוותי חינוך, מחלקות נוער, תנועות נוער ובתי ספר. כל מסלול נבנה בהתאם לקהל היעד ומשלב התנסות, כלים מעשיים ותוצרים שניתן ליישם כבר מהיום הראשון.</p>
+      <section class="mevashlim-hero">
+        <div class="mevashlim-hero-inner">
+          <div class="mevashlim-hero-copy">
+            <p class="eyebrow">הכשרות מעשיות לעולם החינוך וההדרכה</p>
+            <h1>AI בחינוך הבלתי פורמלי</h1>
+            <p class="mevashlim-lead">הכשרות מעשיות לבני נוער, מחלקות נוער, מתנ״סים, תנועות נוער וצוותי חינוך והדרכה. כל מסלול מותאם לקהל היעד ומשלב היכרות עם כלי AI, התנסות מעשית ויישום בעבודה החינוכית.</p>
+            <a class="button mevashlim-primary-button" href="https://wa.me/972526022321">לפרטים נוספים</a>
+          </div>
         </div>
       </section>
-      <section class="section">
-        <div class="grid">
-          <button class="card audience-card" type="button" data-ai-audience="youth" aria-pressed="true">
-            <h2>AI למחלקות נוער ותנועות נוער</h2>
-            <p>כלים מעשיים לצוותי נוער, רכזים ומדריכים שרוצים לשלב AI בעבודה החינוכית והארגונית.</p>
-          </button>
-          <button class="card audience-card" type="button" data-ai-audience="schools" aria-pressed="false">
-            <h2>AI לבתי ספר</h2>
-            <p>סדנה חווייתית ומעשית לתלמידים, המפתחת שימוש נכון, יצירתי ואחראי בכלי בינה מלאכותית.</p>
-          </button>
-          <button class="card audience-card" type="button" data-ai-audience="educators" aria-pressed="false">
-            <h2>AI לצוותי חינוך והדרכה</h2>
-            <p>כלים מעשיים לאנשי חינוך והדרכה לשילוב AI בהוראה, בניהול משימות ובפיתוח תכנים.</p>
-          </button>
-          <article class="card wide audience-panel" data-ai-panel="youth">
-            <h2>AI למחלקות נוער ותנועות נוער</h2>
-            <p>בינה מלאכותית אינה מחליפה את אנשי החינוך או את המדריכים – היא מעניקה להם כלים שמאפשרים לעבוד בצורה מקצועית, יעילה ומדויקת יותר. הסדנה משלבת למידה מעשית, התנסות אישית ועבודה על תהליכים אמיתיים מתוך עולם מחלקות הנוער, במטרה לחסוך זמן, לשפר את איכות התכנים ולבנות שפה מקצועית אחידה לצוות כולו.</p>
-            <p>במהלך הסדנה המשתתפים לומדים כיצד לשלב את כלי הבינה המלאכותית בתכנון פעילויות, בניית מערכי הדרכה, יצירת חומרים חינוכיים, הכנת מצגות, כתיבת מסרים, תיעוד תהליכים וניהול ידע ארגוני. הדגש אינו על הכרת הכלים בלבד, אלא על הדרך שבה ניתן לשלב אותם בעבודה היומיומית, מבלי לוותר על החשיבה החינוכית, היצירתיות והקשר האישי עם בני הנוער.</p>
-            <p>הסדנה בנויה סביב תהליכי העבודה האמיתיים של מחלקת הנוער – החל מאפיון קבוצה והגדרת מטרות, דרך בניית פעילות מותאמת, יצירת תכנים וחומרי הדרכה, ועד תיעוד, הפקת לקחים ושיפור מתמשך. כל משתתף מתנסה באופן מעשי בכלים ומסיים את הסדנה עם תוצרים שניתן להתחיל להשתמש בהם כבר למחרת.</p>
-            <h3>שני מסלולים</h3>
-            <h3>סדנה בסיסית</h3>
-            <p>מסלול ממוקד המעניק היכרות מעשית עם כלי הבינה המלאכותית והשימוש בהם בתכנון פעילויות, יצירת חומרי הדרכה וייעול העבודה השוטפת של צוותי ההדרכה והרכזים.</p>
-            <h3>סדנה מורחבת</h3>
-            <p>מסלול תהליכי המאפשר ליווי מעמיק יותר, עבודה על תהליכים אמיתיים מתוך המחלקה, התאמת כלים לצורכי הארגון, בניית שיטות עבודה אחידות וניהול ידע מקצועי שיישאר גם לאחר סיום ההכשרה.</p>
-            <h3>מה קורה במהלך הסדנה</h3>
-            <p>המשתתפים עובדים על דוגמאות אמיתיות מעולם מחלקות הנוער, בונים פעילויות באמצעות AI, יוצרים חומרי הדרכה, מצגות, מסמכי עבודה ותכנים חזותיים, לומדים כיצד לנסח בקשות מדויקות לכלי הבינה המלאכותית ומקבלים כלים שיסייעו להם לחסוך זמן, לשפר את איכות העבודה ולהתמקד במה שבאמת חשוב – העבודה החינוכית עם בני הנוער.</p>
-            <h3>המטרה התהליכית</h3>
-            <p>מטרת הסדנה אינה רק להכיר כלי חדש, אלא להעניק למחלקת הנוער דרך עבודה עדכנית, יעילה ומקצועית יותר. שילוב נכון של בינה מלאכותית מאפשר לצוותים לעבוד בצורה מסודרת, לשמור ידע ארגוני, ליצור רצף מקצועי ולהקדיש יותר זמן לליווי, לחינוך ולהובלת בני הנוער.</p>
-            <h3>התאמה אישית</h3>
-            <p>ההכשרה מותאמת באופן אישי לאופי מחלקת הנוער, לצוות ההדרכה, לרמת הידע הקיימת ולמטרות המקצועיות של הארגון.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px;">
-              <a class="button" href="https://wa.me/972526022321?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA." data-contact-link="whatsapp">שליחת הודעת WhatsApp</a>
-              <a class="button" href="tel:+972526022321">052-602-2321</a>
-            </div>
+
+      <section class="section mevashlim-facts-section" aria-label="פרטי ההכשרה בקצרה">
+        <div class="mevashlim-facts">
+          <article class="mevashlim-fact-card">
+            <span class="mevashlim-icon" aria-hidden="true">👥</span>
+            <h2>למי ההכשרה מתאימה</h2>
+            <p>לבני נוער בכיתות ט׳–י״ב, מחלקות נוער, מתנ״סים, תנועות נוער וצוותי חינוך והדרכה.</p>
           </article>
-          <article class="card wide audience-panel" data-ai-panel="schools" hidden>
-            <h2>AI לבתי ספר</h2>
-            <p>הבינה המלאכותית משנה את הדרך שבה תלמידים לומדים, יוצרים וחושבים. מטרת הסדנה היא לחשוף את המשתתפים לעולם ה־AI בצורה חווייתית, מעשית ואחראית, ולהעניק להם כלים שישמשו אותם בלמידה, ביצירת תוכן, בפתרון בעיות ובהמשך דרכם בעולם המשתנה.</p>
-            <p>הסדנה מתאימה גם למשתתפים ללא ניסיון קודם. באמצעות התנסות מעשית, המשתתפים מכירים מגוון כלי בינה מלאכותית, לומדים כיצד להשתמש בהם בצורה נכונה ומבינים כיצד ניתן לרתום את הטכנולוגיה כדי לחזק יצירתיות, חשיבה ביקורתית, למידה עצמאית ועבודת צוות.</p>
-            <p>במהלך הסדנה עובדים על משימות מעשיות המדמות מצבים אמיתיים מעולם הלמידה. המשתתפים יוצרים תכנים, מצגות, תמונות, סרטונים, מסמכים ורעיונות באמצעות כלי AI, תוך קבלת כלים לכתיבת בקשות (Prompts) מדויקות ולהפקת תוצרים איכותיים.</p>
-            <p>הסדנה אינה עוסקת רק בהפעלת כלים, אלא גם בפיתוח מיומנויות הנדרשות לעולם העתיד: חשיבה יצירתית, פתרון בעיות, קבלת החלטות, עבודה משותפת ושימוש אחראי בטכנולוגיה.</p>
-            <h3>שני מסלולים</h3>
-            <h3>סדנה בסיסית</h3>
-            <p>היכרות חווייתית עם עולם הבינה המלאכותית, התנסות במגוון כלים ורכישת מיומנויות בסיסיות לשימוש נכון ויעיל ב־AI.</p>
-            <h3>סדנה מורחבת</h3>
-            <p>מסלול מעמיק הכולל פרויקטים מעשיים, עבודה על אתגרים אמיתיים, פיתוח תוצרים אישיים וקבוצתיים והעמקה בשימוש בבינה מלאכותית כחלק מתהליכי למידה ויצירה.</p>
-            <h3>מה קורה במהלך הסדנה</h3>
-            <p>המשתתפים עובדים באופן פעיל עם מגוון כלי AI, יוצרים תוצרים אישיים וקבוצתיים, מתנסים במשימות יצירתיות ומקבלים כלים מעשיים שאותם יוכלו ליישם כבר מהיום הראשון במסגרת הלימודים.</p>
-            <h3>המטרה התהליכית</h3>
-            <p>המטרה היא להעניק למשתתפים ביטחון בעבודה עם כלי בינה מלאכותית, לפתח מיומנויות למידה עדכניות ולהפוך את הטכנולוגיה לכלי המסייע לחשיבה, ליצירתיות ולהצלחה בעולם הלימודים והעשייה.</p>
-            <h3>התאמה אישית</h3>
-            <p>התוכנית מותאמת לשכבת הגיל, לרמת ההיכרות עם כלי הבינה המלאכותית ולמטרות החינוכיות של בית הספר, וניתנת להתאמה למסלולים, מגמות ותחומי דעת שונים.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px;">
-              <a class="button" href="https://wa.me/972526022321?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA." data-contact-link="whatsapp">שליחת הודעת WhatsApp</a>
-              <a class="button" href="tel:+972526022321">052-602-2321</a>
-            </div>
+          <article class="mevashlim-fact-card">
+            <span class="mevashlim-icon" aria-hidden="true">🎯</span>
+            <h2>מטרות ההכשרה</h2>
+            <p>היכרות עם כלי AI וכלים משלימים, התנסות מעשית ושילובם בלמידה, בהדרכה, ביצירת תוכן, בניהול משימות ובהובלת תהליכים חינוכיים.</p>
           </article>
-          <article class="card wide audience-panel" data-ai-panel="educators" hidden>
-            <h2>AI לצוותי חינוך והדרכה</h2>
-            <p>עולם החינוך משתנה במהירות, ואנשי חינוך נדרשים להתמודד עם מגוון רחב של משימות – בניית מערכי שיעור, יצירת פעילויות, כתיבת משובים, תקשורת עם תלמידים והורים, הכנת מצגות, תיעוד תהליכים ופיתוח תכנים חינוכיים. הבינה המלאכותית מאפשרת לבצע את כל אלו בצורה יעילה, יצירתית ומקצועית יותר, תוך חיסכון משמעותי בזמן.</p>
-            <p>הסדנה מעניקה לאנשי החינוך כלים מעשיים לשילוב AI בעבודה היומיומית. המשתתפים לומדים כיצד לבנות מערכי שיעור, ליצור פעילויות מותאמות, להכין מצגות, לנסח הודעות ומסמכים מקצועיים, לפתח חומרי למידה ולייצר תכנים חינוכיים איכותיים – והכול תוך שמירה על החשיבה הפדגוגית ועל הקשר האישי עם התלמידים.</p>
-            <p>ההכשרה מבוססת על תרגול מעשי ועבודה עם מגוון כלי AI, מתוך מצבים אמיתיים מעולם החינוך. כל משתתף יוצא עם כלים ותוצרים שיוכל ליישם כבר ביום העבודה הבא, בהתאם לתפקידו ולמסגרת שבה הוא פועל.</p>
-            <h3>שני מסלולים</h3>
-            <h3>סדנה בסיסית</h3>
-            <p>היכרות מעשית עם כלי הבינה המלאכותית והדרכים לשלב אותם בהוראה, בהדרכה ובניהול משימות חינוכיות.</p>
-            <h3>סדנה מורחבת</h3>
-            <p>תהליך מעמיק הכולל התאמת כלי AI לצוות החינוכי, בניית תהליכי עבודה, יצירת מאגרי תוכן, שיפור תהליכי הוראה, הערכה וניהול ידע מקצועי.</p>
-            <h3>מה קורה במהלך הסדנה</h3>
-            <p>המשתתפים מתנסים בבניית מערכי שיעור, יצירת מצגות, כתיבת משובים, הכנת חומרי למידה, יצירת תמונות וסרטונים, תכנון פעילויות חינוכיות וניסוח בקשות (Prompts) איכותיות, תוך היכרות עם מגוון כלי AI מתקדמים שניתן לשלב בעבודה היומיומית.</p>
-            <h3>המטרה התהליכית</h3>
-            <p>מטרת ההכשרה היא לאפשר לאנשי החינוך לעבוד בצורה חכמה, יעילה ומדויקת יותר, להפחית עומס, לחסוך זמן ולהקדיש יותר משאבים למה שחשוב באמת – הקשר עם הלומדים, ההובלה החינוכית ופיתוח תהליכי למידה משמעותיים.</p>
-            <h3>התאמה אישית</h3>
-            <p>התוכנית מותאמת לאופי הארגון, לתפקידי המשתתפים, לרמת ההיכרות עם כלי הבינה המלאכותית ולמטרות המקצועיות של הצוות, כך שכל הכשרה נבנית בהתאם לצרכים הייחודיים של המסגרת החינוכית.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px;">
-              <a class="button" href="https://wa.me/972526022321?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%99%D7%A7%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%A1%D7%93%D7%A0%D7%90%D7%95%D7%AA." data-contact-link="whatsapp">שליחת הודעת WhatsApp</a>
-              <a class="button" href="tel:+972526022321">052-602-2321</a>
-            </div>
+          <article class="mevashlim-fact-card">
+            <span class="mevashlim-icon" aria-hidden="true">⏱</span>
+            <h2>משך הפעילות</h2>
+            <p>מפגש חד־פעמי של שעה וחצי עד שעתיים, או תהליך מעמיק של מספר מפגשים בהתאם למסלול ולקהל היעד.</p>
           </article>
+          <article class="mevashlim-fact-card">
+            <span class="mevashlim-icon" aria-hidden="true">↔</span>
+            <h2>גודל הקבוצה</h2>
+            <p>עד 15 משתתפים בכל קבוצה, כדי לאפשר התנסות אישית, ליווי ועבודה מעשית.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section mevashlim-story-section">
+        <div class="mevashlim-section-inner">
+          <div class="section-heading mevashlim-heading"><h2>כשהטכנולוגיה הופכת לכלי חינוכי</h2></div>
+          <article class="mevashlim-story-card mevashlim-story-card-featured">
+            <p>בינה מלאכותית יכולה לסייע לבני נוער ולאנשי חינוך לחשוב, ליצור ולעבוד בצורה יעילה ומדויקת יותר. ההכשרה אינה מסתפקת בהצגת הכלים, אלא מחברת אותם למצבים אמיתיים מהעולם החינוכי: תכנון פעילויות, יצירת תוכן, פיתוח רעיונות, ניהול משימות, עבודת צוות והובלת תהליכים.</p>
+            <p>במהלך המפגשים המשתתפים מתנסים בכלים באופן מעשי, מבינים מה ניתן לעשות בעזרתם ולומדים כיצד להשתמש בהם בצורה נכונה ואחראית. התוכן ורמת ההעמקה מותאמים לגיל המשתתפים, לתפקידם ולצרכים של הגוף המזמין.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section mevashlim-routes-section">
+        <div class="mevashlim-section-inner">
+          <div class="section-heading mevashlim-heading"><h2>מסלולי ההכשרה</h2></div>
+          <div class="mevashlim-routes-grid">
+            <article class="mevashlim-route-card">
+              <span class="mevashlim-route-number">01</span>
+              <h3>AI לבני נוער</h3>
+              <p>מסלול לבני נוער בכיתות ט׳–י״ב, המשלב היכרות והתנסות בכלי AI הרלוונטיים לעולמם. המשתתפים לומדים להשתמש בכלים לצורך למידה, יצירת תוכן, פיתוח רעיונות וניהול משימות. לבני נוער בתפקידי הדרכה ואחריות ניתנים גם כלים לתכנון פעילויות ולעבודה בקן, בשבט או בתנועת הנוער.</p>
+              <p class="mevashlim-route-duration">המסלול כולל בין מפגש אחד לשלושה מפגשים, בהתאם למטרות ולרמת ההעמקה הרצויה.</p>
+            </article>
+            <article class="mevashlim-route-card mevashlim-route-card-featured">
+              <span class="mevashlim-route-number">02</span>
+              <h3>AI לאנשי חינוך והדרכה</h3>
+              <p>מסלול למחלקות נוער, מתנ״סים, תנועות נוער וצוותים חינוכיים. המשתתפים מכירים כלי AI וכלים משלימים ולומדים כיצד למנף אותם לתכנון פעילויות, יצירת תוכן, ניהול משימות, עבודת צוות, תיעוד והובלת תהליכים חינוכיים.</p>
+              <p class="mevashlim-route-duration">ניתן לבחור בסדנת חשיפה חד־פעמית או בתהליך מעמיק של 3–10 מפגשים.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section mevashlim-outcomes-section">
+        <div class="mevashlim-section-inner">
+          <div class="section-heading mevashlim-heading"><h2>אפשרויות ההכשרה</h2></div>
+          <div class="ai-options-grid">
+            <article class="ai-option-card">
+              <h3>סדנת חשיפה ל־AI</h3>
+              <p>מפגש חד־פעמי באורך שעה וחצי עד שעתיים. המשתתפים נחשפים לעולם הבינה המלאכותית, מכירים כלים מרכזיים, מבינים את היתרונות והאפשרויות ומתנסים בשימושים הרלוונטיים לעבודתם או לעולמם.</p>
+            </article>
+            <article class="ai-option-card">
+              <h3>תהליך מעמיק</h3>
+              <p>סדרה של 3–10 מפגשים, כאשר כל מפגש נמשך שעה וחצי עד שעתיים. התהליך מאפשר להכיר מגוון רחב יותר של כלי AI וכלים משלימים, לתרגל באופן מעשי, לעבוד על משימות אמיתיות ולבנות דרכי עבודה שניתן להמשיך ליישם גם לאחר סיום ההכשרה.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section mevashlim-story-section">
+        <div class="mevashlim-section-inner">
+          <div class="section-heading mevashlim-heading"><h2>מה עושים במהלך המפגשים</h2></div>
+          <article class="mevashlim-story-card mevashlim-story-card-featured">
+            <p>המשתתפים מתנסים באופן מעשי בכלי AI ובכלים משלימים, לומדים לנסח בקשות מדויקות ומפתחים תוצרים הרלוונטיים לעולמם: פעילויות, מערכי הדרכה, מצגות, תמונות, סרטונים, מסמכים, הודעות ורעיונות לתהליכים חינוכיים.</p>
+            <p>הדגש הוא על עבודה מעשית ולא רק על הסבר: כל משתתף מתנסה, בודק כיצד הכלים יכולים לסייע לו ולומד להשתמש בהם בצורה נכונה, יעילה ואחראית.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section mevashlim-custom-section">
+        <div class="mevashlim-custom-card">
+          <span class="mevashlim-icon" aria-hidden="true">✦</span>
+          <div>
+            <h2>הכשרה שמותאמת לגוף המזמין</h2>
+            <p>לפני כל הכשרה אנחנו מכירים את הקבוצה ובונים יחד עם הגוף המזמין מטרות משותפות, בהתאם לצורכי הצוות והמסגרת. על בסיס המטרות נבחרים הכלים, המשימות, התכנים ומספר המפגשים.</p>
+            <p>ההכשרה מתקיימת אצל הגוף המזמין ומיועדת לקבוצות של עד 15 משתתפים. ניתן לעבוד באמצעות מחשבים אישיים, ובמידת הצורך יובאו גם כמה מחשבים מטעמנו.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mevashlim-final-cta">
+        <div>
+          <p class="eyebrow">מתחילים בהכשרה שמתאימה לכם</p>
+          <h2>בואו נבנה את ההכשרה שמתאימה לכם</h2>
+          <p>ספרו לנו על הקבוצה, הצוות והצרכים שלכם, ונבנה יחד הכשרת AI מעשית ומדויקת — ממפגש חשיפה חד־פעמי ועד תהליך מעמיק של מספר מפגשים.</p>
+        </div>
+        <div class="mevashlim-final-actions">
+          <a class="button mevashlim-primary-button" href="https://wa.me/972526022321">WhatsApp</a>
+          <a class="mevashlim-text-link" href="tel:+972526022321">052-602-2321</a>
         </div>
       </section>
     </main>
+
     <footer class="site-footer">
       <div class="footer-inner">
         <strong>יקי בוזגלו | סדנאות ותהליכים חווייתיים</strong>
@@ -142,23 +203,6 @@
       </div>
     </footer>
     <script src="../assets/js/social-links.js"></script>
-    <script>
-      const audienceButtons = document.querySelectorAll("[data-ai-audience]");
-      const audiencePanels = document.querySelectorAll("[data-ai-panel]");
-
-      audienceButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const selectedAudience = button.dataset.aiAudience;
-
-          audienceButtons.forEach((item) => {
-            item.setAttribute("aria-pressed", String(item === button));
-          });
-
-          audiencePanels.forEach((panel) => {
-            panel.hidden = panel.dataset.aiPanel !== selectedAudience;
-          });
-        });
-      });
-    </script>
+    <script src="../assets/js/accessibility-widget.js"></script>
   </body>
 </html>
